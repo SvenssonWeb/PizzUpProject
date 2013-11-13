@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">PizzUp</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="heading">PizzUp</string>
+    <string name="city">Växjö</string>
     <string name="action_settings">Settings</string>
 
 </resources>
