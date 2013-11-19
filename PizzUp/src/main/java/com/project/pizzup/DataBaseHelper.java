@@ -6,6 +6,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -68,7 +69,10 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	private boolean checkDataBase(){
 		SQLiteDatabase checkDB = null;
 		try{
+			myContext.getDatabasePath(DB_NAME);
+
 			String myPath = DB_PATH + DB_NAME;
+			myPath = myContext.getDatabasePath(DB_NAME).getPath();
 			checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
 		}catch(SQLiteException e){
 			//database doesn't exist yet.
@@ -146,14 +150,20 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		List<Pizza> pizzas = new ArrayList<Pizza>();
 
 		Cursor cursor = myDataBase.query(Pizza.TABLE,
-				new String[]{Pizza.ID, Pizza.NAME, Pizza.PRICE, Pizza.RATING},
-				null, null, null, null, null);
-		while (cursor.isAfterLast()){
+				null, null, null, null, null, null);
+
+		int id = cursor.getColumnIndex(Pizza.ID);
+		int name = cursor.getColumnIndex(Pizza.NAME);
+		int price = cursor.getColumnIndex(Pizza.PRICE);
+		int rating = cursor.getColumnIndex(Pizza.RATING);
+
+		while (cursor.moveToNext()){
 			Pizza pizza = new Pizza();
-			pizza.id = cursor.getInt(0);
-			pizza.name = cursor.getString(1);
-			pizza.price = cursor.getDouble(2);
-			pizza.rating = cursor.getInt(3);
+			pizza.id = cursor.getInt(id);
+			pizza.name = cursor.getString(name);
+			pizza.price = cursor.getDouble(price);
+			pizza.rating = cursor.getInt(rating);
+			Log.i("pizz", cursor.getPosition() + pizza.id + ":" + pizza.name + ":" + pizza.price + ":" + pizza.rating);
 			pizzas.add(pizza);
 		}
 		return pizzas;

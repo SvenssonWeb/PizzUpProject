@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 	    setUpDatabase();
 	    List<Pizza> pizzas = myDbHelper.getAllPizzas();
-	    Log.i("myPizza", pizzas.get(0).name);
+	    Log.i("pizz", pizzas.get(0).name);
 
 
         super.onCreate(savedInstanceState);
