@@ -1,27 +1,33 @@
 package com.project.pizzup;
 
 import android.app.Activity;
-import android.app.ActionBar;
-import android.app.Fragment;
+import android.database.SQLException;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.util.List;
+
 
 public class MainActivity extends Activity {
 
     ListView listView;
+	DataBaseHelper myDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+	    setUpDatabase();
+	    List<Pizza> pizzas = myDbHelper.getAllPizzas();
+	    Log.i("myPizza", pizzas.get(0).name);
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -88,4 +94,19 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+
+	public void setUpDatabase(){
+		myDbHelper = new DataBaseHelper(this);
+
+		try {
+			myDbHelper.createDataBase();
+		} catch (IOException ioe) {
+			throw new Error("Unable to create database");
+		}
+		try {
+			myDbHelper.openDataBase();
+		}catch(SQLException sqle){
+			throw sqle;
+		}
+	}
 }
