@@ -31,5 +31,4 @@
         android:id="@+id/listView"
         android:layout_gravity="left|center_vertical" />
 
-
 </FrameLayout>
