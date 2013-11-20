@@ -10,13 +10,26 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import java.lang.reflect.Array;
 
 public class ResActivity extends Activity {
+
+    ListView listView;
+    DataBaseHelper myDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_res);
+
+        listView = (ListView) findViewById(R.id.pizza_menu);
+        ArrayAdapter adapter = new ArrayAdapter<Pizza>(this,R.layout.pizza_list_item);
+        listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
 
