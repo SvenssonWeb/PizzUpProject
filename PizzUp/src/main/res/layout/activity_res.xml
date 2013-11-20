@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
@@ -7,12 +7,19 @@
     tools:ignore="MergeRootFrame" >
 
 
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout">
+
+
     <TextView
         android:layout_width="230dp"
         android:layout_height="80dp"
         android:layout_marginTop="10dp"
+        android:textSize="22dp"
         android:gravity="center_horizontal"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Adonis, 0470-32543 Östregårdsg. 36, Växjö"
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal|top" />
@@ -21,14 +28,26 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#000"
-        android:layout_marginTop="80dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="25dp">
     </LinearLayout>
 
+   </LinearLayout>
+
     <ListView
+<<<<<<< HEAD
         android:layout_width="wrap_content"
         android:layout_height="360dp"
         android:layout_marginTop="10dp"
         android:id="@+id/pizza_menu"
         android:layout_gravity="left|center_vertical" />
+=======
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/linearLayout" />
+>>>>>>> 18b33cb9007210819c669959283731f22d6e1587
 
-</FrameLayout>
+</RelativeLayout>
