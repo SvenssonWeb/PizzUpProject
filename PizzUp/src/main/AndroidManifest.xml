@@ -13,9 +13,10 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <!--Splash Screen -->
+
+        <!-- Splash Screen -->
         <activity
-            android:name=".SplashScreen"
+            android:name="com.project.pizzup.SplashScreen"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,12 +24,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--Main Activity -->
+        <!-- Main Activity -->
         <activity
-            android:name=".MainActivity"
+            android:name="com.project.pizzup.MainActivity"
             android:label="@string/app_name" >
         </activity>
-
+        <activity
+            android:name="com.project.pizzup.ResActivity"
+            android:label="@string/title_activity_res" >
+        </activity>
+        <activity
+            android:name="com.project.pizzup.PizzaActivity"
+            android:label="@string/title_activity_pizza" >
+        </activity>
     </application>
 
 </manifest>
