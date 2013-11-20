@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.project.pizzup.Objects.Pizza;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 	    setUpDatabase();
-	    List<Pizza> pizzas = myDbHelper.getAllPizzas();
+	    List<Pizza> pizzas = myDbHelper.getAllPizzas(1);
 	    Log.i("pizz", pizzas.get(0).name);
 
 

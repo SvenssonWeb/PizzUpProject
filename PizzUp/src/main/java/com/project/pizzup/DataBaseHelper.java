@@ -8,6 +8,9 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.project.pizzup.Objects.Pizza;
+import com.project.pizzup.Objects.Pizzeria;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -146,11 +149,36 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	// You could return cursors by doing "return myDataBase.query(....)" so it'd be easy
 	// to you to create adapters for your views.
 
-	public List<Pizza> getAllPizzas(){
+//	String      dbName	    The table name to compile the query against.
+//	String[]    columnNames	A list of which table columns to return. Passing "null" will return all columns.
+//	String      whereClause	Where-clause, i.e. filter for the selection of data, null will select all data.
+//	String[]    selectionArgs	You may include ?s in the "whereClause"". These placeholders will get replaced by the values from the selectionArgs array.
+//	String[]    groupBy	    A filter declaring how to group rows, null will cause the rows to not be grouped.
+//	String[]    having	    Filter for the groups, null means no filter.
+//	String[]    orderBy	    Table columns which will be used to order the data, null means no ordering.
+
+
+	public Cursor getRestaurantCursor(){
+		return myDataBase.query(Pizzeria.TABLE,
+				null, null, null, null, null, null);
+
+	}
+	public Cursor getPizzaCursor(int restaurantId){
+		String query = "SELECT * FROM pizza LEFT JOIN restaurant ON restaurant._id = pizza.restaurant_id WHERE restaurant._id = ?";
+		String[] args = {""+restaurantId};
+
+		return myDataBase.rawQuery(query, args);
+	}
+	public Cursor getIngredientCursor(int pizzaId){
+		String query = "SELECT * FROM ingredient LEFT JOIN p_i ON p_i.i_id = ingredient._id WHERE p_id = ?";
+		String[] args = {""+pizzaId};
+
+		return myDataBase.rawQuery(query, args);
+	}
+	public List<Pizza> getAllPizzas(int restaurantId){
 		List<Pizza> pizzas = new ArrayList<Pizza>();
 
-		Cursor cursor = myDataBase.query(Pizza.TABLE,
-				null, null, null, null, null, null);
+		Cursor cursor = getPizzaCursor(restaurantId);
 
 		int id = cursor.getColumnIndex(Pizza.ID);
 		int name = cursor.getColumnIndex(Pizza.NAME);
@@ -168,4 +196,5 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		}
 		return pizzas;
 	}
+
 }

@@ -1,4 +1,4 @@
-package com.project.pizzup;
+package com.project.pizzup.Objects;
 
 import java.util.ArrayList;
 
