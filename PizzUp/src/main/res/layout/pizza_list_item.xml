@@ -4,7 +4,7 @@
     android:padding="6dip" >
 
     <ImageView
-        android:id="@+id/icon"
+        android:id="@+id/pizza_number"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_alignParentBottom="true"
@@ -19,7 +19,7 @@
         android:layout_height="26dip"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_toRightOf="@id/icon"
+        android:layout_toRightOf="@id/pizza_number"
         android:ellipsize="marquee"
         android:singleLine="true"
         android:text="Betyg"
@@ -33,7 +33,7 @@
         android:layout_alignParentRight="false"
         android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="true"
-        android:layout_toRightOf="@id/icon"
+        android:layout_toRightOf="@id/pizza_number"
         android:gravity="center_vertical"
         android:text="Namnet på pizzan"
         android:textSize="16sp" />
