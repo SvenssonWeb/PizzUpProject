@@ -4,10 +4,38 @@ CREATE TABLE "android_metadata" ("locale" TEXT DEFAULT 'en_US');
 INSERT INTO android_metadata VALUES('en_US');
 
 CREATE TABLE ingredient (_id INTEGER PRIMARY KEY, name TEXT);
-INSERT INTO ingredient VALUES(1,'Skinka');
-INSERT INTO ingredient VALUES(2,'Ananas');
-INSERT INTO ingredient VALUES(3,'Ost');
-INSERT INTO ingredient VALUES(4,'Kebab');
+INSERT INTO ingredient VALUES(1,'Tomatsås');
+INSERT INTO ingredient VALUES(2,'Ost');
+INSERT INTO ingredient VALUES(3,'Skinka');
+INSERT INTO ingredient VALUES(4,'Ananas');
+INSERT INTO ingredient VALUES(5,'Kebab');
+INSERT INTO ingredient VALUES(6,'Kebabsås');
+INSERT INTO ingredient VALUES(7,'Köttfärssås');
+INSERT INTO ingredient VALUES(8,'Köttfärs');
+INSERT INTO ingredient VALUES(9,'Lök');
+INSERT INTO ingredient VALUES(10,'Vitlök');
+INSERT INTO ingredient VALUES(11,'Champinjoner');
+INSERT INTO ingredient VALUES(12,'Räkor');
+INSERT INTO ingredient VALUES(13,'Bacon');
+INSERT INTO ingredient VALUES(14,'Fläskfilé');
+INSERT INTO ingredient VALUES(15,'Oxfilé');
+INSERT INTO ingredient VALUES(16,'Kyckling');
+INSERT INTO ingredient VALUES(17,'Ägg');
+INSERT INTO ingredient VALUES(18,'Salami');
+INSERT INTO ingredient VALUES(19,'Banan');
+INSERT INTO ingredient VALUES(20,'Curry');
+INSERT INTO ingredient VALUES(21,'Bearnaisesås');
+INSERT INTO ingredient VALUES(22,'Tonfisk');
+INSERT INTO ingredient VALUES(23,'Paprika');
+INSERT INTO ingredient VALUES(24,'Crabfish');
+INSERT INTO ingredient VALUES(25,'Musslor');
+INSERT INTO ingredient VALUES(26,'Oliver');
+INSERT INTO ingredient VALUES(27,'Soltorkade tomater');
+INSERT INTO ingredient VALUES(28,'Färska tomater');
+INSERT INTO ingredient VALUES(29,'Vitlökssås');
+
+
+
 
 CREATE TABLE p_i (p_id INTEGER, i_id INTEGER);
 INSERT INTO p_i VALUES(1,1);
@@ -19,12 +47,122 @@ INSERT INTO p_i VALUES(4,3);
 INSERT INTO p_i VALUES(4,4);
 
 CREATE TABLE pizza (_id INTEGER PRIMARY KEY, name TEXT, price NUMERIC, rating NUMERIC, restaurant_id INTEGER);
-INSERT INTO pizza VALUES(1,'Vesuvio',55.55,3,1);
-INSERT INTO pizza VALUES(2,'Hawaii',62.22,4,1);
-INSERT INTO pizza VALUES(3,'Kebab',78.55,5,1);
+INSERT INTO pizza VALUES(0,'Vesuvio',55.55,3,1);
+INSERT INTO pizza VALUES(0,'Hawaii',62.22,4,1);
+INSERT INTO pizza VALUES(0,'Kebab',78.55,5,1);
 
 CREATE TABLE restaurant (_id INTEGER PRIMARY KEY, name TEXT, address TEXT, phone NUMERIC, rating NUMERIC);
-INSERT INTO restaurant VALUES(1,'Adonis','Stockholm',04727362784,4);
-INSERT INTO restaurant VALUES(2,'Palermo','Göteborg',1234567890,2);
+
+INSERT INTO restaurant VALUES(1,'Tasty','Smedjegatan 28, Växjö',047025900,0);
+INSERT INTO pizza VALUES(1,'Margeritha',75,0,1);
+INSERT INTO p_i VALUES(1,1);
+INSERT INTO p_i VALUES(1,2);
+
+INSERT INTO pizza VALUES(2,'Venezia',75,0,1);
+INSERT INTO p_i VALUES(1,1);
+INSERT INTO p_i VALUES(1,7);
+
+INSERT INTO pizza VALUES(3,'Caruso',75,0,1);
+INSERT INTO p_i VALUES(1,1);
+INSERT INTO p_i VALUES(1,8);
+INSERT INTO p_i VALUES(1,10);
+
+INSERT INTO pizza VALUES(4,'Vesuvio',75,0,1);
+INSERT INTO p_i VALUES(1,1);
+INSERT INTO p_i VALUES(1,3);
+
+INSERT INTO pizza VALUES(5,'Calzone (inbakad)',75,0,1);
+INSERT INTO p_i VALUES(1,1);
+INSERT INTO p_i VALUES(1,3);
+
+INSERT INTO pizza VALUES(6,'Cappricciosa',75,0,1);
+INSERT INTO p_i VALUES(1,1);
+INSERT INTO p_i VALUES(1,3);
+INSERT INTO p_i VALUES(1,11);
+
+INSERT INTO pizza VALUES(7,'Capri',75,0,1);
+INSERT INTO p_i VALUES(1,1);
+INSERT INTO p_i VALUES(1,3);
+INSERT INTO p_i VALUES(1,12);
+
+INSERT INTO pizza VALUES(8,'Hawaii',75,0,1);
+INSERT INTO p_i VALUES(1,1);
+INSERT INTO p_i VALUES(1,3);
+INSERT INTO p_i VALUES(1,4);
+
+INSERT INTO pizza VALUES(9,'Florida',75,0,1);
+INSERT INTO p_i VALUES(1,1);
+INSERT INTO p_i VALUES(1,3);
+INSERT INTO p_i VALUES(1,13);
+
+INSERT INTO pizza VALUES(10,'Africana',75,0,1);
+INSERT INTO p_i VALUES(1,1);
+INSERT INTO p_i VALUES(1,19);
+INSERT INTO p_i VALUES(1,4);
+
+INSERT INTO pizza VALUES(11,'Blecko',75,0,1);
+INSERT INTO p_i VALUES(1,1);
+INSERT INTO p_i VALUES(1,12);
+INSERT INTO p_i VALUES(1,11);
+
+INSERT INTO pizza VALUES(12,'Jamaica',75,0,1);
+INSERT INTO p_i VALUES(1,1);
+INSERT INTO p_i VALUES(1,3);
+INSERT INTO p_i VALUES(1,11);
+INSERT INTO p_i VALUES(1,12);
+
+INSERT INTO pizza VALUES(13,'Malta',75,0,1);
+INSERT INTO p_i VALUES(1,1);
+INSERT INTO p_i VALUES(1,13);
+INSERT INTO p_i VALUES(1,12);
+INSERT INTO p_i VALUES(1,9);
+
+INSERT INTO pizza VALUES(14,'Madrid',75,0,1);
+INSERT INTO p_i VALUES(1,1);
+INSERT INTO p_i VALUES(1,18);
+INSERT INTO p_i VALUES(1,9);
+INSERT INTO p_i VALUES(1,26);
+INSERT INTO p_i VALUES(1,27);
+
+INSERT INTO pizza VALUES(15,'Maffia',75,0,1);
+INSERT INTO p_i VALUES(1,1);
+INSERT INTO p_i VALUES(1,3);
+INSERT INTO p_i VALUES(1,11);
+INSERT INTO p_i VALUES(1,14);
+
+
+INSERT INTO pizza VALUES(16,'Disco',75,0,1);
+INSERT INTO p_i VALUES(1,1);
+INSERT INTO p_i VALUES(1,3);
+INSERT INTO p_i VALUES(1,12);
+INSERT INTO p_i VALUES(1,7);
+
+INSERT INTO pizza VALUES(17,'La Mare',75,0,1);
+INSERT INTO p_i VALUES(1,1);
+INSERT INTO p_i VALUES(1,3);
+INSERT INTO p_i VALUES(1,11);
+INSERT INTO p_i VALUES(1,4);
+INSERT INTO p_i VALUES(1,12);
+
+INSERT INTO pizza VALUES(18,'Ciao Ciao (inbakad)',75,0,1);
+INSERT INTO p_i VALUES(1,1);
+INSERT INTO p_i VALUES(1,9);
+INSERT INTO p_i VALUES(1,14);
+INSERT INTO p_i VALUES(1,11);
+INSERT INTO p_i VALUES(1,10);
+
+INSERT INTO pizza VALUES(19,'Havspizza',75,0,1);
+INSERT INTO p_i VALUES(1,1);
+INSERT INTO p_i VALUES(1,12);
+INSERT INTO p_i VALUES(1,24);
+INSERT INTO p_i VALUES(1,22);
+INSERT INTO p_i VALUES(1,25);
+
+INSERT INTO pizza VALUES(20,'Kycklingpizza',75,0,1);
+INSERT INTO p_i VALUES(1,1);
+INSERT INTO p_i VALUES(1,16);
+INSERT INTO p_i VALUES(1,28);
+INSERT INTO p_i VALUES(1,29);
+INSERT INTO p_i VALUES(1,20);
 
 COMMIT;
