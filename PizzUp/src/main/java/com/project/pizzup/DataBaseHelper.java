@@ -164,16 +164,38 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 
 	}
 	public Cursor getPizzaCursor(int restaurantId){
-		String query = "SELECT * FROM pizza LEFT JOIN restaurant ON restaurant._id = pizza.restaurant_id WHERE restaurant._id = ?";
+		String query = "SELECT p._id, p.name, p.price, p.rating FROM pizza AS p LEFT JOIN restaurant AS r ON r._id = p.r_id WHERE r._id = ?";
 		String[] args = {""+restaurantId};
 
 		return myDataBase.rawQuery(query, args);
 	}
 	public Cursor getIngredientCursor(int pizzaId){
-		String query = "SELECT * FROM ingredient LEFT JOIN p_i ON p_i.i_id = ingredient._id WHERE p_id = ?";
+		String query = "SELECT * FROM ingredient AS i LEFT JOIN p_i ON p_i.i_id = i._id WHERE p_id = ?";
 		String[] args = {""+pizzaId};
 
 		return myDataBase.rawQuery(query, args);
+	}
+	public List<Pizzeria> getAllRestaurants(){
+		List<Pizzeria> pizzerias = new ArrayList<Pizzeria>();
+
+		Cursor cursor = getRestaurantCursor();
+
+		int id = cursor.getColumnIndex(Pizzeria.ID);
+		int name = cursor.getColumnIndex(Pizzeria.NAME);
+		int address = cursor.getColumnIndex(Pizzeria.ADDRESS);
+		int phone = cursor.getColumnIndex(Pizzeria.PHONE);
+		int rating = cursor.getColumnIndex(Pizzeria.RATING);
+
+		while (cursor.moveToNext()){
+			Pizzeria pizzeria = new Pizzeria();
+			pizzeria.id = cursor.getInt(id);
+			pizzeria.name = cursor.getString(name);
+			pizzeria.address = cursor.getString(address);
+			pizzeria.phone = cursor.getInt(phone);
+			pizzeria.rating = cursor.getInt(rating);
+			pizzerias.add(pizzeria);
+		}
+		return pizzerias;
 	}
 	public List<Pizza> getAllPizzas(int restaurantId){
 		List<Pizza> pizzas = new ArrayList<Pizza>();

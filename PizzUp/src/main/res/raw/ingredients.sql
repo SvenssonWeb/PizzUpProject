@@ -1,0 +1,33 @@
+BEGIN TRANSACTION;
+
+INSERT INTO ingredient VALUES(1,'Tomatsås');
+INSERT INTO ingredient VALUES(2,'Ost');
+INSERT INTO ingredient VALUES(3,'Skinka');
+INSERT INTO ingredient VALUES(4,'Ananas');
+INSERT INTO ingredient VALUES(5,'Kebab');
+INSERT INTO ingredient VALUES(6,'Kebabsås');
+INSERT INTO ingredient VALUES(7,'Köttfärssås');
+INSERT INTO ingredient VALUES(8,'Köttfärs');
+INSERT INTO ingredient VALUES(9,'Lök');
+INSERT INTO ingredient VALUES(10,'Vitlök');
+INSERT INTO ingredient VALUES(11,'Champinjoner');
+INSERT INTO ingredient VALUES(12,'Räkor');
+INSERT INTO ingredient VALUES(13,'Bacon');
+INSERT INTO ingredient VALUES(14,'Fläskfilé');
+INSERT INTO ingredient VALUES(15,'Oxfilé');
+INSERT INTO ingredient VALUES(16,'Kyckling');
+INSERT INTO ingredient VALUES(17,'Ägg');
+INSERT INTO ingredient VALUES(18,'Salami');
+INSERT INTO ingredient VALUES(19,'Banan');
+INSERT INTO ingredient VALUES(20,'Curry');
+INSERT INTO ingredient VALUES(21,'Bearnaisesås');
+INSERT INTO ingredient VALUES(22,'Tonfisk');
+INSERT INTO ingredient VALUES(23,'Paprika');
+INSERT INTO ingredient VALUES(24,'Crabfish');
+INSERT INTO ingredient VALUES(25,'Musslor');
+INSERT INTO ingredient VALUES(26,'Oliver');
+INSERT INTO ingredient VALUES(27,'Soltorkade tomater');
+INSERT INTO ingredient VALUES(28,'Färska tomater');
+INSERT INTO ingredient VALUES(29,'Vitlökssås');
+
+COMMIT;

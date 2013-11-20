@@ -12,6 +12,12 @@ public class Pizza {
 	public int rating;
 	public ArrayList<String> ingredients;
 
+	@Override
+	public String toString() {
+		return name + " " + price + ":- " + rating + "/5";
+	}
+
+
 	public final static String TABLE = "pizza";
 	public final static String ID = "_id";
 	public final static String NAME = "name";

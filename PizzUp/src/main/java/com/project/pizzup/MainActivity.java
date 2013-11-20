@@ -1,6 +1,7 @@
 package com.project.pizzup;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.SQLException;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.project.pizzup.Objects.Pizza;
+import com.project.pizzup.Objects.Pizzeria;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,6 +22,7 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 
+	public final static String EXTRA_MESSAGE = "com.project.pizzup.MESSAGE";
     ListView listView;
 	DataBaseHelper myDbHelper;
 
@@ -35,9 +38,14 @@ public class MainActivity extends Activity {
 
         listView = (ListView) findViewById(R.id.list);
 
-        String[] values = new String[]{
-            "Adonis","Venzia", "Bella Lanterna","Palma"
-        };
+	    List<Pizzeria> pizzerias = myDbHelper.getAllRestaurants(); //new ArrayList<Pizzeria>();
+//	    pizzerias.add(new Pizzeria(666,"Adonis"));
+//	    pizzerias.add(new Pizzeria(49,"Venzia"));
+//	    pizzerias.add(new Pizzeria(789,"Bella Lanterna"));
+//	    pizzerias.add(new Pizzeria(372,"Palma"));
+//        String[] values = new String[]{
+//		        "Adonis","Venzia", "Bella Lanterna","Palma"
+//        };
 
         // Define a new Adapter
         // First parameter - Context
@@ -45,8 +53,8 @@ public class MainActivity extends Activity {
         // Third parameter - ID of the TextView to which the data is written
         // Forth - the Array of data
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+        ArrayAdapter<Pizzeria> adapter = new ArrayAdapter<Pizzeria>(this,
+                android.R.layout.simple_list_item_1, android.R.id.text1, pizzerias);
 
 
         // Assign adapter to ListView
@@ -58,18 +66,16 @@ public class MainActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-
-                // ListView Clicked item index
-                int itemPosition     = position;
-
                 // ListView Clicked item value
-                String  itemValue    = (String) listView.getItemAtPosition(position);
+                Pizzeria item = (Pizzeria) listView.getItemAtPosition(position);
 
                 // Show Alert
-                Toast.makeText(getApplicationContext(),
-                        "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
+	            assert item != null;
+	            Toast.makeText(getApplicationContext(),
+                        "ID :" + item.id + "  ListItem : " + item.name, Toast.LENGTH_LONG)
                         .show();
-
+	            Log.i("pizz",  myDbHelper.getAllPizzas(item.id).get(0).name);
+	            toRestaurant(item.id);
             }
 
         });
@@ -95,7 +101,11 @@ public class MainActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+	public void toRestaurant(int id){
+		Intent intent = new Intent(this, ResActivity.class);
+		intent.putExtra(EXTRA_MESSAGE, id);
+		startActivity(intent);
+	}
 
 	public void setUpDatabase(){
 		myDbHelper = new DataBaseHelper(this);
