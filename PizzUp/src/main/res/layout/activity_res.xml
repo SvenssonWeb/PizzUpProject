@@ -6,13 +6,11 @@
     tools:context=".MainActivity"
     tools:ignore="MergeRootFrame" >
 
-
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:id="@+id/linearLayout">
-
 
     <TextView
         android:layout_width="230dp"
@@ -32,22 +30,13 @@
         android:layout_marginBottom="25dp">
     </LinearLayout>
 
-   </LinearLayout>
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="360dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/pizza_menu"
+            android:layout_gravity="left|center_vertical" />
 
-    <ListView
-<<<<<<< HEAD
-        android:layout_width="wrap_content"
-        android:layout_height="360dp"
-        android:layout_marginTop="10dp"
-        android:id="@+id/pizza_menu"
-        android:layout_gravity="left|center_vertical" />
-=======
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/listView"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/linearLayout" />
->>>>>>> 18b33cb9007210819c669959283731f22d6e1587
+   </LinearLayout>
 
 </RelativeLayout>
