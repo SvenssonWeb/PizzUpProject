@@ -29,5 +29,12 @@ INSERT INTO ingredient VALUES(26,'Oliver');
 INSERT INTO ingredient VALUES(27,'Soltorkade tomater');
 INSERT INTO ingredient VALUES(28,'Färska tomater');
 INSERT INTO ingredient VALUES(29,'Vitlökssås');
+INSERT INTO ingredient VALUES(30, 'Mozarella');
+INSERT INTO ingredient VALUES(31, 'Ruccola');
+INSERT INTO ingredient VALUES(32, 'Citronolja');
+INSERT INTO ingredient VALUES(33, 'Sardeller');
+INSERT INTO ingredient VALUES(34, 'Kapris');
+INSERT INTO ingredient VALUES(35, 'Vitlöksolja');
+INSERT INTO ingredient VALUES(36, 'Valnötter');
 
 COMMIT;
