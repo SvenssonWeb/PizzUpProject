@@ -41,7 +41,6 @@ public class MenuAdapter extends ArrayAdapter<Pizza> {
 
 			holder = new PizzaHolder();
 			assert row != null;
-			holder.imgIcon = (ImageView) row.findViewById(R.id.pizzaItemNumber);
 			holder.txtTitle = (TextView) row.findViewById(R.id.pizzaItemName);
 			holder.txtPrice = (TextView) row.findViewById(R.id.pizzaItemPrice);
 			holder.txtRating = (RatingBar) row.findViewById(R.id.pizzaItemRating);
@@ -69,7 +68,6 @@ public class MenuAdapter extends ArrayAdapter<Pizza> {
 
 
 	static class PizzaHolder {
-		ImageView imgIcon;
 		TextView txtTitle;
 		TextView txtPrice;
 		RatingBar txtRating;
