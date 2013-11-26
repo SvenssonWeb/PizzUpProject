@@ -117,6 +117,7 @@ public class MainActivity extends Activity {
 		try {
 			myDbHelper.openDataBase();
 		}catch(SQLException sqle){
+			Log.e("Pizz: SQL Exception", sqle.getMessage());
 			throw sqle;
 		}
 	}

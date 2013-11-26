@@ -175,6 +175,28 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 
 		return myDataBase.rawQuery(query, args);
 	}
+	public Pizzeria getRestaurant(int restaurantID){
+		String query = "SELECT * FROM restaurant AS r WHERE r._id = ?";
+		String[] args = {""+restaurantID};
+		Cursor cursor = myDataBase.rawQuery(query, args);
+
+		int id = cursor.getColumnIndex(Pizzeria.ID);
+		int name = cursor.getColumnIndex(Pizzeria.NAME);
+		int address = cursor.getColumnIndex(Pizzeria.ADDRESS);
+		int phone = cursor.getColumnIndex(Pizzeria.PHONE);
+		int rating = cursor.getColumnIndex(Pizzeria.RATING);
+
+		if (cursor.moveToNext()){
+			Pizzeria pizzeria = new Pizzeria();
+			pizzeria.id = cursor.getInt(id);
+			pizzeria.name = cursor.getString(name);
+			pizzeria.address = cursor.getString(address);
+			pizzeria.phone = cursor.getInt(phone);
+			pizzeria.rating = cursor.getInt(rating);
+			return pizzeria;
+		}
+		return null;
+	}
 	public List<Pizzeria> getAllRestaurants(){
 		List<Pizzeria> pizzerias = new ArrayList<Pizzeria>();
 
