@@ -36,5 +36,6 @@ INSERT INTO ingredient VALUES(33, 'Sardeller');
 INSERT INTO ingredient VALUES(34, 'Kapris');
 INSERT INTO ingredient VALUES(35, 'Vitlöksolja');
 INSERT INTO ingredient VALUES(36, 'Valnötter');
+INSERT INTO ingredient VALUES(37, 'Lime/Chili kräm');
 
 COMMIT;
