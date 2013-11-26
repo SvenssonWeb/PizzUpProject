@@ -56,7 +56,6 @@ public class MainActivity extends Activity {
         ArrayAdapter<Pizzeria> adapter = new ArrayAdapter<Pizzeria>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, pizzerias);
 
-
         // Assign adapter to ListView
         listView.setAdapter(adapter);
 

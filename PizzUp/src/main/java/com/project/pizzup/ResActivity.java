@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.project.pizzup.Objects.MenuAdapter;
 import com.project.pizzup.Objects.Pizza;
 
 import java.io.IOException;
@@ -33,11 +34,12 @@ public class ResActivity extends Activity {
 	    ArrayAdapter<Pizza> adapter = new ArrayAdapter<Pizza>(this,
 			    android.R.layout.simple_list_item_1, android.R.id.text1, pizzas);
 
+	    MenuAdapter menuAdapter = new MenuAdapter(this, R.layout.pizza_list_item, pizzas);
 
-	    listView = (ListView) findViewById(R.id.pizza_menu);
+	    listView = (ListView) findViewById(R.id.pizzaMenu);
         //ArrayAdapter adapter = new ArrayAdapter<Pizza>(this,R.layout.pizza_list_item);
-        listView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        listView.setAdapter(menuAdapter);
+        menuAdapter.notifyDataSetChanged();
     }
 
 
