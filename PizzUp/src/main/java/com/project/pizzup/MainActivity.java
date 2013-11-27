@@ -12,8 +12,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.project.pizzup.Objects.MenuAdapter;
 import com.project.pizzup.Objects.Pizza;
 import com.project.pizzup.Objects.Pizzeria;
+import com.project.pizzup.Objects.ResAdapter;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,13 +26,14 @@ public class MainActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "com.project.pizzup.MESSAGE";
     ListView listView;
 	DataBaseHelper myDbHelper;
+    List<Pizzeria> pizzerias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 	    setUpDatabase();
 	    List<Pizza> pizzas = myDbHelper.getAllPizzas(1);
 	    Log.i("pizz", pizzas.get(0).name);
-
+        pizzerias = myDbHelper.getAllRestaurants();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -38,6 +41,7 @@ public class MainActivity extends Activity {
         listView = (ListView) findViewById(R.id.list);
 
 	    List<Pizzeria> pizzerias = myDbHelper.getAllRestaurants();
+        ResAdapter resAdapter = new ResAdapter(this, R.layout.res_list_item, pizzerias);
 
         // Define a new Adapter
         // First parameter - Context
@@ -49,7 +53,7 @@ public class MainActivity extends Activity {
                 android.R.layout.simple_list_item_1, android.R.id.text1, pizzerias);
 
         // Assign adapter to ListView
-        listView.setAdapter(adapter);
+        listView.setAdapter(resAdapter);
 
         // ListView Item Click Listener
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
