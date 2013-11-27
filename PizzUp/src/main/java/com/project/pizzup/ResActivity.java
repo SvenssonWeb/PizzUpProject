@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ import java.util.List;
 
 public class ResActivity extends Activity implements View.OnClickListener {
 
+    public final static String EXTRA_MESSAGE = "com.project.pizzup.MESSAGE";
     ListView listView;
     DataBaseHelper myDbHelper;
 	Pizzeria pizzeria;
@@ -56,6 +58,23 @@ public class ResActivity extends Activity implements View.OnClickListener {
         //ArrayAdapter adapter = new ArrayAdapter<Pizza>(this,R.layout.pizza_list_item);
         listView.setAdapter(menuAdapter);
         menuAdapter.notifyDataSetChanged();
+
+        // ListView Item Click Listener
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                // ListView Clicked item value
+                Pizza item = (Pizza) listView.getItemAtPosition(position);
+
+                // Show Alert
+                assert item != null;
+                Log.i("pizz",  myDbHelper.getAllPizzas(item.id).get(0).name);
+                toPizza(item.id);
+            }
+
+        });
     }
 
 
@@ -72,11 +91,16 @@ public class ResActivity extends Activity implements View.OnClickListener {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    public void toPizza(int id){
+        Intent intent = new Intent(this, PizzaActivity.class);
+        intent.putExtra(EXTRA_MESSAGE, id);
+        startActivity(intent);
     }
 	public void setUpDatabase(){
 		myDbHelper = new DataBaseHelper(this);

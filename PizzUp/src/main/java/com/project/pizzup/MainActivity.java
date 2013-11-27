@@ -38,14 +38,7 @@ public class MainActivity extends Activity {
 
         listView = (ListView) findViewById(R.id.list);
 
-	    List<Pizzeria> pizzerias = myDbHelper.getAllRestaurants(); //new ArrayList<Pizzeria>();
-//	    pizzerias.add(new Pizzeria(666,"Adonis"));
-//	    pizzerias.add(new Pizzeria(49,"Venzia"));
-//	    pizzerias.add(new Pizzeria(789,"Bella Lanterna"));
-//	    pizzerias.add(new Pizzeria(372,"Palma"));
-//        String[] values = new String[]{
-//		        "Adonis","Venzia", "Bella Lanterna","Palma"
-//        };
+	    List<Pizzeria> pizzerias = myDbHelper.getAllRestaurants();
 
         // Define a new Adapter
         // First parameter - Context
@@ -70,9 +63,6 @@ public class MainActivity extends Activity {
 
                 // Show Alert
 	            assert item != null;
-	            Toast.makeText(getApplicationContext(),
-                        "ID :" + item.id + "  ListItem : " + item.name, Toast.LENGTH_LONG)
-                        .show();
 	            Log.i("pizz",  myDbHelper.getAllPizzas(item.id).get(0).name);
 	            toRestaurant(item.id);
             }
