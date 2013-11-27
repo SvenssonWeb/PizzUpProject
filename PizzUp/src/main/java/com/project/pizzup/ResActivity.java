@@ -3,10 +3,12 @@ package com.project.pizzup;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.SQLException;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,10 +20,12 @@ import com.project.pizzup.Objects.Pizzeria;
 import java.io.IOException;
 import java.util.List;
 
-public class ResActivity extends Activity {
+public class ResActivity extends Activity implements View.OnClickListener {
 
     ListView listView;
     DataBaseHelper myDbHelper;
+	Pizzeria pizzeria;
+	List<Pizza> pizzas;
 	TextView itemName;
 	TextView itemAdress;
 
@@ -36,11 +40,12 @@ public class ResActivity extends Activity {
 	    Intent intent = getIntent();
 	    int resId = intent.getIntExtra(MainActivity.EXTRA_MESSAGE, -1);
 	    Log.i("pizz",resId+"");
-	    List<Pizza> pizzas = myDbHelper.getAllPizzas(resId);
-	    Pizzeria pizzeria = myDbHelper.getRestaurant(resId);
+	    pizzas = myDbHelper.getAllPizzas(resId);
+	    pizzeria = myDbHelper.getRestaurant(resId);
 
 	    itemName.setText(pizzeria.name);
 	    itemAdress.setText(pizzeria.address);
+	    itemAdress.setOnClickListener(this);
 
 	    ArrayAdapter<Pizza> adapter = new ArrayAdapter<Pizza>(this,
 			    android.R.layout.simple_list_item_1, android.R.id.text1, pizzas);
@@ -86,5 +91,16 @@ public class ResActivity extends Activity {
 		}catch(SQLException sqle){
 			throw sqle;
 		}
+	}
+	@Override
+	public void onClick(View v) {
+		String map = "http://maps.google.co.in/maps?q=" + pizzeria.address;
+
+		Intent i;
+		i = new Intent(Intent.ACTION_VIEW, Uri.parse(map));
+		if (v.equals(null)){
+			i = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:123"));
+		}
+		startActivity(i);
 	}
 }
