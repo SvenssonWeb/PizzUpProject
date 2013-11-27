@@ -70,7 +70,7 @@ public class ResActivity extends Activity implements View.OnClickListener {
 
                 // Show Alert
                 assert item != null;
-                Log.i("pizz",  myDbHelper.getAllPizzas(item.id).get(0).name);
+                //Log.i("pizz",  myDbHelper.getAllPizzas(item.id).get(0).name);
                 toPizza(item.id);
             }
 
