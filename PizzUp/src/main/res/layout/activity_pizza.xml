@@ -1,32 +1,43 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/textView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:textAlignment="center"
-    android:orientation="vertical">
+              android:id="@+id/textView"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingLeft="@dimen/activity_horizontal_margin"
+              android:paddingRight="@dimen/activity_horizontal_margin"
+              android:paddingTop="@dimen/activity_vertical_margin"
+              android:paddingBottom="@dimen/activity_vertical_margin"
+              android:textAlignment="center"
+              android:orientation="vertical">
 
 
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:orientation="vertical">
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:orientation="horizontal"
+			android:gravity="center">
 
-        <TextView
-            android:id="@+id/restaurant_name_txt"
-            android:text="Adonis, 0470-325 43"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:textAlignment="center"
-            android:gravity="center_horizontal"/>
+			<TextView
+				android:id="@+id/restaurantNameTxt"
+				android:text="Adonis, "
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="25sp"
+				android:textAlignment="center"/>
+			<TextView
+				android:id="@+id/restaurantPhoneTxt"
+				android:text="0470-325 43"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="25sp"
+				android:textAlignment="center"/>
 
+		</LinearLayout>
         <TextView
-            android:id="@+id/restaurant_address_txt"
+            android:id="@+id/restaurantAddressTxt"
             android:text="Östregårdsgatan 36, Växjö"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,8 +50,7 @@
             android:layout_height="1dp"
             android:background="#000"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="25dp">
-        </LinearLayout>
+            android:layout_marginBottom="25dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -49,7 +59,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/pizza_name_txt"
+            android:id="@+id/pizzaNameTxt"
             android:text="Vesuvio"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -57,7 +67,7 @@
             android:layout_weight="1"/>
 
         <TextView
-            android:id="@+id/pizza_prize_txt"
+            android:id="@+id/pizzaPrizeTxt"
             android:text="55:-"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,21 +75,35 @@
             android:textStyle="bold" />
 
     </LinearLayout>
+
     <TextView
-        android:id="@+id/pizza_ingredients_txt"
+        android:id="@+id/pizzaIngredientsTxt"
         android:text="Tomatsås, skinka, ost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="italic"
         android:textSize="18sp"/>
+	<Space
+		android:layout_height="0dp"
+		android:layout_width="match_parent"
+		android:layout_weight="1"/>
+	<LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:gravity="center">
 
-    <TextView
-        android:id="@+id/pizza_grade_img"
-        android:text="Betyg: * * * * * "
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp" />
+		<TextView
+			android:text="Betyg: "
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="28sp" />
+		<RatingBar
+			android:id="@+id/pizzaRating"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:numStars="5"
+			android:stepSize="1"/>
 
+		</LinearLayout>
 
 </LinearLayout>

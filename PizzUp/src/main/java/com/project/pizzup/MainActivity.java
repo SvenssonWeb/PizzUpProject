@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.project.pizzup.Objects.Pizza;
 import com.project.pizzup.Objects.Pizzeria;
@@ -64,7 +63,7 @@ public class MainActivity extends Activity {
                 // Show Alert
 	            assert item != null;
 	            Log.i("pizz",  myDbHelper.getAllPizzas(item.id).get(0).name);
-	            toRestaurant(item.id);
+	            toRestaurant(item);
             }
 
         });
@@ -90,9 +89,10 @@ public class MainActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
-	public void toRestaurant(int id){
+
+	public void toRestaurant(Pizzeria pizzeria){
 		Intent intent = new Intent(this, ResActivity.class);
-		intent.putExtra(EXTRA_MESSAGE, id);
+		intent.putExtra(EXTRA_MESSAGE, pizzeria);
 		startActivity(intent);
 	}
 

@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -44,6 +43,7 @@ public class MenuAdapter extends ArrayAdapter<Pizza> {
 			holder.txtTitle = (TextView) row.findViewById(R.id.pizzaItemName);
 			holder.txtPrice = (TextView) row.findViewById(R.id.pizzaItemPrice);
 			holder.txtRating = (RatingBar) row.findViewById(R.id.pizzaItemRating);
+			holder.txtIngredients = (TextView) row.findViewById(R.id.pizzaItemIngredients);
 
 			row.setTag(holder);
 		} else {
@@ -55,14 +55,8 @@ public class MenuAdapter extends ArrayAdapter<Pizza> {
 		holder.txtTitle.setText(pizza.name);
 		holder.txtPrice.setText(pizza.price + ":-");
 		holder.txtRating.setRating(pizza.rating);
-//		String temp = "";
-//		for (String ingredient : pizza.ingredients){
-//			if (!temp.equals("")){
-//				temp += ", ";
-//			}
-//			temp += ingredient;
-//		}
-//		holder.txtIngredients.setText(temp);
+
+		holder.txtIngredients.setText(pizza.ingredientsToString());
 		return row;
 	}
 

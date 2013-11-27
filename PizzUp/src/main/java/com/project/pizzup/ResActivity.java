@@ -10,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,7 +22,8 @@ import java.util.List;
 
 public class ResActivity extends Activity implements View.OnClickListener {
 
-    public final static String EXTRA_MESSAGE = "com.project.pizzup.MESSAGE";
+    public final static String COM_PROJECT_PIZZUP_MESSAGE_PIZZA = "com.project.pizzup.MESSAGE.PIZZA";
+    public final static String COM_PROJECT_PIZZUP_MESSAGE_PIZZERIA = "com.project.pizzup.MESSAGE.PIZZERIA";
     ListView listView;
     DataBaseHelper myDbHelper;
 	Pizzeria pizzeria;
@@ -35,27 +35,26 @@ public class ResActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_res);
-	    itemName = (TextView) findViewById(R.id.resTitel);
-	    itemAdress = (TextView) findViewById(R.id.resAdress);
 	    setUpDatabase();
 
-	    Intent intent = getIntent();
-	    int resId = intent.getIntExtra(MainActivity.EXTRA_MESSAGE, -1);
-	    Log.i("pizz",resId+"");
-	    pizzas = myDbHelper.getAllPizzas(resId);
-	    pizzeria = myDbHelper.getRestaurant(resId);
+	    itemName = (TextView) findViewById(R.id.resTitel);
+	    itemAdress = (TextView) findViewById(R.id.resAdress);
+
+	    Bundle data = getIntent().getExtras();
+	    assert data != null;
+	    pizzeria = data.getParcelable(MainActivity.EXTRA_MESSAGE);
+
+	    Log.i("pizz",pizzeria.id+"");
+
+	    pizzas = myDbHelper.getAllPizzas(pizzeria.id);
 
 	    itemName.setText(pizzeria.name);
 	    itemAdress.setText(pizzeria.address);
 	    itemAdress.setOnClickListener(this);
 
-	    ArrayAdapter<Pizza> adapter = new ArrayAdapter<Pizza>(this,
-			    android.R.layout.simple_list_item_1, android.R.id.text1, pizzas);
-
 	    MenuAdapter menuAdapter = new MenuAdapter(this, R.layout.pizza_list_item, pizzas);
 
 	    listView = (ListView) findViewById(R.id.pizzaMenu);
-        //ArrayAdapter adapter = new ArrayAdapter<Pizza>(this,R.layout.pizza_list_item);
         listView.setAdapter(menuAdapter);
         menuAdapter.notifyDataSetChanged();
 
@@ -70,8 +69,7 @@ public class ResActivity extends Activity implements View.OnClickListener {
 
                 // Show Alert
                 assert item != null;
-                //Log.i("pizz",  myDbHelper.getAllPizzas(item.id).get(0).name);
-                toPizza(item.id);
+                toPizza(pizzeria, item);
             }
 
         });
@@ -97,9 +95,10 @@ public class ResActivity extends Activity implements View.OnClickListener {
         }
         return super.onOptionsItemSelected(item);
     }
-    public void toPizza(int id){
+    public void toPizza(Pizzeria pizzeria, Pizza pizza){
         Intent intent = new Intent(this, PizzaActivity.class);
-        intent.putExtra(EXTRA_MESSAGE, id);
+        intent.putExtra(COM_PROJECT_PIZZUP_MESSAGE_PIZZA, pizza);
+        intent.putExtra(COM_PROJECT_PIZZUP_MESSAGE_PIZZERIA, pizzeria);
         startActivity(intent);
     }
 	public void setUpDatabase(){

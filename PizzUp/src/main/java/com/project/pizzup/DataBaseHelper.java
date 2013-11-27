@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.project.pizzup.Objects.Ingredient;
 import com.project.pizzup.Objects.Pizza;
 import com.project.pizzup.Objects.Pizzeria;
 
@@ -74,8 +75,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		try{
 			myContext.getDatabasePath(DB_NAME);
 
-			String myPath = DB_PATH + DB_NAME;
-			myPath = myContext.getDatabasePath(DB_NAME).getPath();
+			String myPath = myContext.getDatabasePath(DB_NAME).getPath();
 			checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
 		}catch(SQLiteException e){
 			//database doesn't exist yet.
@@ -197,6 +197,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		}
 		return null;
 	}
+
 	public List<Pizzeria> getAllRestaurants(){
 		List<Pizzeria> pizzerias = new ArrayList<Pizzeria>();
 
@@ -219,6 +220,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		}
 		return pizzerias;
 	}
+
 	public List<Pizza> getAllPizzas(int restaurantId){
 		List<Pizza> pizzas = new ArrayList<Pizza>();
 
@@ -235,10 +237,29 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 			pizza.name = cursor.getString(name);
 			pizza.price = cursor.getDouble(price);
 			pizza.rating = cursor.getInt(rating);
+			pizza.ingredients = getPizzaIngredients(pizza.id);
 			Log.i("pizz", cursor.getPosition() + pizza.id + ":" + pizza.name + ":" + pizza.price + ":" + pizza.rating);
 			pizzas.add(pizza);
 		}
 		return pizzas;
+	}
+
+	public List<Ingredient> getPizzaIngredients(int pizzaId){
+		List<Ingredient> ingredients = new ArrayList<Ingredient>();
+
+		Cursor cursor = getIngredientCursor(pizzaId);
+
+		int id = cursor.getColumnIndex(Pizza.ID);
+		int name = cursor.getColumnIndex(Pizza.NAME);
+
+		while (cursor.moveToNext()){
+			Ingredient ingredient = new Ingredient();
+			ingredient.id = cursor.getInt(id);
+			ingredient.name = cursor.getString(name);
+			Log.i("pizz - Ingredients", cursor.getPosition() + ingredient.id + ":" + ingredient.name);
+			ingredients.add(ingredient);
+		}
+		return ingredients;
 	}
 
 }
