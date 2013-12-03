@@ -2,7 +2,6 @@ package com.project.pizzup;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.SQLException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,16 +10,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.project.pizzup.Objects.MenuAdapter;
 import com.project.pizzup.Objects.Pizza;
 import com.project.pizzup.Objects.Pizzeria;
 
-import java.io.IOException;
 import java.util.List;
 
-public class ResActivity extends Activity implements View.OnClickListener {
+public class ResActivity extends Activity implements View.OnClickListener, RatingBar.OnRatingBarChangeListener {
 
     public final static String COM_PROJECT_PIZZUP_MESSAGE_PIZZA = "com.project.pizzup.MESSAGE.PIZZA";
     public final static String COM_PROJECT_PIZZUP_MESSAGE_PIZZERIA = "com.project.pizzup.MESSAGE.PIZZERIA";
@@ -30,15 +29,18 @@ public class ResActivity extends Activity implements View.OnClickListener {
 	List<Pizza> pizzas;
 	TextView itemName;
 	TextView itemAdress;
+	RatingBar ratingBar;
+	MenuAdapter menuAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_res);
-	    setUpDatabase();
+	    myDbHelper = MainActivity.myDbHelper;
 
 	    itemName = (TextView) findViewById(R.id.resTitel);
 	    itemAdress = (TextView) findViewById(R.id.resAdress);
+	    ratingBar = (RatingBar) findViewById(R.id.resRatingBar);
 
 	    Bundle data = getIntent().getExtras();
 	    assert data != null;
@@ -51,8 +53,10 @@ public class ResActivity extends Activity implements View.OnClickListener {
 	    itemName.setText(pizzeria.name);
 	    itemAdress.setText(pizzeria.address);
 	    itemAdress.setOnClickListener(this);
+	    ratingBar.setRating(pizzeria.rating);
+	    ratingBar.setOnRatingBarChangeListener(this);
 
-	    MenuAdapter menuAdapter = new MenuAdapter(this, R.layout.pizza_list_item, pizzas);
+	    menuAdapter = new MenuAdapter(this, R.layout.pizza_list_item, pizzas);
 
 	    listView = (ListView) findViewById(R.id.pizzaMenu);
         listView.setAdapter(menuAdapter);
@@ -75,7 +79,11 @@ public class ResActivity extends Activity implements View.OnClickListener {
         });
     }
 
-
+	public void onResume(){
+		super.onResume();
+		menuAdapter.clear();
+		menuAdapter.addAll(myDbHelper.getAllPizzas(pizzeria.id));
+	}
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         
@@ -101,20 +109,7 @@ public class ResActivity extends Activity implements View.OnClickListener {
         intent.putExtra(COM_PROJECT_PIZZUP_MESSAGE_PIZZERIA, pizzeria);
         startActivity(intent);
     }
-	public void setUpDatabase(){
-		myDbHelper = new DataBaseHelper(this);
 
-		try {
-			myDbHelper.createDataBase();
-		} catch (IOException ioe) {
-			throw new Error("Unable to create database");
-		}
-		try {
-			myDbHelper.openDataBase();
-		}catch(SQLException sqle){
-			throw sqle;
-		}
-	}
 	@Override
 	public void onClick(View v) {
 		String map = "http://maps.google.co.in/maps?q=" + pizzeria.address;
@@ -125,5 +120,11 @@ public class ResActivity extends Activity implements View.OnClickListener {
 			i = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:123"));
 		}
 		startActivity(i);
+	}
+
+	@Override
+	public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+		int temp = myDbHelper.setRestaurantRating(pizzeria.id, rating);
+		Log.i("pizz", "Database returnvalue: "+temp);
 	}
 }

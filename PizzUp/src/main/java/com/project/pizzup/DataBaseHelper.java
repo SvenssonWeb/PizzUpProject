@@ -1,5 +1,6 @@
 package com.project.pizzup;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -52,9 +53,9 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 
 		boolean dbExist = checkDataBase();
 
-//		if(dbExist){
+		if(dbExist){
 			//do nothing - database already exist
-//		}else{
+		}else{
 			//By calling this method and empty database will be created into the default system path
 			//of your application so we are gonna be able to overwrite that database with our database.
 			this.getReadableDatabase();
@@ -63,7 +64,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 			} catch (IOException e) {
 				throw new Error("Error copying database");
 			}
-//		}
+		}
 	}
 
 	/**
@@ -261,5 +262,26 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		}
 		return ingredients;
 	}
+	public int setRestaurantRating(int restaurantId, float rating){
+		myDataBase = getWritableDatabase();
+		int ratingInt = (int) rating;
 
+		ContentValues values = new ContentValues();
+		values.put(Pizzeria.RATING, ratingInt);
+		String where = Pizzeria.ID + " = ?";
+		String[] args = {restaurantId+""};
+
+		return myDataBase.update(Pizzeria.TABLE, values, where, args);
+	}
+	public int setPizzaRating(int pizzaId, float rating){
+		myDataBase = getWritableDatabase();
+		int ratingInt = (int) rating;
+
+		ContentValues values = new ContentValues();
+		values.put(Pizza.RATING, ratingInt);
+		String where = Pizza.ID + " = ?";
+		String[] args = {pizzaId+""};
+
+		return myDataBase.update(Pizza.TABLE, values, where, args);
+	}
 }
