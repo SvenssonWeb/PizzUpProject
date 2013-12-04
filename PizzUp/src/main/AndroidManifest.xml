@@ -49,6 +49,14 @@
             android:name="com.project.pizzup.IngredientAdminActivity"
             android:label="@string/title_activity_ingredient_admin" >
         </activity>
+        <activity
+            android:name="com.project.pizzup.FilterActivity"
+            android:label="@string/title_activity_filter"
+            android:parentActivityName="MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="MainActivity" />
+        </activity>
     </application>
 
 </manifest>
