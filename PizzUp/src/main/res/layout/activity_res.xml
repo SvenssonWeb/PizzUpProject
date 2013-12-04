@@ -14,30 +14,35 @@
 	    <LinearLayout
 		    android:layout_height="wrap_content"
 		    android:layout_width="match_parent"
-		    android:orientation="vertical">
+		    android:orientation="vertical"
+		    android:gravity="center">
+
 		    <TextView
-			    android:id="@+id/resTitel"
+			    android:id="@+id/resTitle"
 			    android:text="Adonis"
-			    android:layout_width="match_parent"
+			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:textSize="40sp"
-			    android:textAlignment="center"
-			    android:gravity="center_horizontal" />
+			    android:textSize="35sp"/>
 		    <TextView
 			    android:id="@+id/resAdress"
-			    android:text="Bigmacgatan 32, Växjö"
-			    android:layout_width="match_parent"
+			    android:text="Östregårdsgatan 36, Växjö"
+			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:textSize="20sp"
-			    android:textAlignment="center"
-			    android:gravity="center_horizontal"/>
-		    <LinearLayout
-			    android:layout_width="match_parent"
-			    android:layout_height="1dp"
-			    android:background="#000"
-			    android:layout_marginTop="10dp"
-			    android:layout_marginBottom="0dp"/>
+			    android:textSize="20sp"/>
+		    <TextView
+			    android:id="@+id/resPhone"
+			    android:text="0470-325 43"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:textSize="20sp"/>
 	    </LinearLayout>
+
+	    <LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="1dp"
+		    android:background="#000"
+		    android:layout_marginTop="2dp"
+		    android:layout_marginBottom="25dp"/>
 
 	    <ListView
 		    android:id="@+id/pizzaMenu"

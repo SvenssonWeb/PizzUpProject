@@ -18,10 +18,6 @@ import com.project.pizzup.Objects.Pizza;
 import com.project.pizzup.Objects.Pizzeria;
 import com.project.pizzup.Objects.Sorting;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class ResActivity extends Activity implements View.OnClickListener, RatingBar.OnRatingBarChangeListener, MenuItem.OnMenuItemClickListener {
@@ -34,6 +30,7 @@ public class ResActivity extends Activity implements View.OnClickListener, Ratin
 	List<Pizza> pizzas;
 	TextView itemName;
 	TextView itemAdress;
+	TextView itemPhone;
 	RatingBar ratingBar;
 	MenuAdapter menuAdapter;
     MenuItem ratingItem;
@@ -46,8 +43,9 @@ public class ResActivity extends Activity implements View.OnClickListener, Ratin
         setContentView(R.layout.activity_res);
 	    myDbHelper = MainActivity.myDbHelper;
 
-	    itemName = (TextView) findViewById(R.id.resTitel);
+	    itemName = (TextView) findViewById(R.id.resTitle);
 	    itemAdress = (TextView) findViewById(R.id.resAdress);
+	    itemPhone = (TextView) findViewById(R.id.resPhone);
 	    ratingBar = (RatingBar) findViewById(R.id.resRatingBar);
 
 	    Bundle data = getIntent().getExtras();
@@ -61,6 +59,8 @@ public class ResActivity extends Activity implements View.OnClickListener, Ratin
 	    itemName.setText(pizzeria.name);
 	    itemAdress.setText(pizzeria.address);
 	    itemAdress.setOnClickListener(this);
+	    itemPhone.setText(pizzeria.phone);
+	    itemPhone.setOnClickListener(this);
 	    ratingBar.setRating(pizzeria.rating);
 	    ratingBar.setOnRatingBarChangeListener(this);
 
@@ -134,17 +134,17 @@ public class ResActivity extends Activity implements View.OnClickListener, Ratin
 	public void onClick(View v) {
 		String map = "http://maps.google.co.in/maps?q=" + pizzeria.address;
 
-		Intent i;
-		i = new Intent(Intent.ACTION_VIEW, Uri.parse(map));
-		if (v.equals(null)){
-			i = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:123"));
+		Intent i = null;
+
+		if (v.equals(itemPhone)){
+			i = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:" + pizzeria.phone));
 		} else if (v.equals(itemAdress)){
-
+			i = new Intent(Intent.ACTION_VIEW, Uri.parse(map));
         }
-		startActivity(i);
-
+		if (i != null){
+			startActivity(i);
+		}
 //        myDbHelper.getAllPizzas(pizzeria.id, "rating");
-
     }
 
     @Override

@@ -12,7 +12,7 @@ public class Pizzeria implements Parcelable {
 	public int id;
 	public String name;
 	public String address;
-	public int phone;
+	public String phone;
 	public int rating;
 	public ArrayList<Pizza> pizzas;
 
@@ -41,7 +41,7 @@ public class Pizzeria implements Parcelable {
 		this.id = Integer.parseInt(data[0]);
 		this.name = data[1];
 		this.address = data[2];
-		this.phone = Integer.parseInt(data[3]);
+		this.phone = data[3];
 		this.rating = Integer.parseInt(data[4]);
 	}
 
@@ -55,7 +55,7 @@ public class Pizzeria implements Parcelable {
 		dest.writeStringArray(new String[] {this.id+"",
 				this.name,
 				this.address,
-				this.phone+"",
+				this.phone,
 				this.rating+""});
 	}
 	public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {

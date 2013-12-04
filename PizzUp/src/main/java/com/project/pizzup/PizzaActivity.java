@@ -22,6 +22,7 @@ public class PizzaActivity extends Activity implements RatingBar.OnRatingBarChan
 	TextView resAddress;
 	TextView pizzaTitle;
 	TextView pizzaPrice;
+	TextView pizzaPriceCent;
 	TextView pizzaIngredient;
 	RatingBar pizzaRating;
 
@@ -36,6 +37,7 @@ public class PizzaActivity extends Activity implements RatingBar.OnRatingBarChan
 		resAddress = (TextView) findViewById(R.id.restaurantAddressTxt);
 		pizzaTitle = (TextView) findViewById(R.id.pizzaNameTxt);
 		pizzaPrice = (TextView) findViewById(R.id.pizzaPrizeTxt);
+		pizzaPriceCent = (TextView) findViewById(R.id.pizzaPrizeCentTxt);
 		pizzaIngredient = (TextView) findViewById(R.id.pizzaIngredientsTxt);
 		pizzaRating = (RatingBar) findViewById(R.id.pizzaRating);
 		pizzaRating.setOnRatingBarChangeListener(this);
@@ -47,15 +49,21 @@ public class PizzaActivity extends Activity implements RatingBar.OnRatingBarChan
 		pizza.ingredients = myDbHelper.getPizzaIngredients(pizza.id);
 
 		resTitle.setText(pizzeria.name);
-		resPhone.setText(pizzeria.phone+"");
+		resPhone.setText(pizzeria.phone);
 		resAddress.setText(pizzeria.address);
 		pizzaTitle.setText(pizza.name);
-		pizzaPrice.setText(pizza.price+"");
+		setPizzaPrice(pizzaPrice, pizzaPriceCent, pizza.price);
 		pizzaIngredient.setText(pizza.ingredientsToString());
 		pizzaRating.setRating(pizza.rating);
 
 	}
+	private void setPizzaPrice(TextView crowns, TextView cent, double price){
+		String[] priceString = (price + "").split("\\.");
+		crowns.setText(priceString[0]);
+		if (priceString[1].length() < 2) priceString[1] += "0";
+		cent.setText(priceString[1]);
 
+	}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

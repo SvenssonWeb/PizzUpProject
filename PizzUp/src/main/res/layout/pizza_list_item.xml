@@ -29,10 +29,25 @@
 
 			<TextView
 				android:id="@+id/pizzaItemPrice"
-				android:text="55:-"
+				android:text="55"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
+				android:textSize="30sp"
+				android:textStyle="bold" />
+			<TextView
+				android:id="@+id/pizzaItemPriceCent"
+				android:text="00"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_marginTop="10dp"
+				android:textSize="15sp"
+				android:textStyle="bold" />
+			<TextView
+				android:text=":-"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="6dp"
 				android:textSize="30sp"
 				android:textStyle="bold" />
 
@@ -64,7 +79,8 @@
 				android:textSize="12sp"
 				android:numStars="5"
 				android:stepSize="1"
-				android:isIndicator="true"/>
+				android:isIndicator="true"
+				android:layout_gravity="bottom"/>
 
 		</LinearLayout>
 	</LinearLayout>

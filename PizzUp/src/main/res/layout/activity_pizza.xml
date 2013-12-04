@@ -9,49 +9,38 @@
               android:textAlignment="center"
               android:orientation="vertical">
 
+    <LinearLayout
+	    android:layout_height="wrap_content"
+	    android:layout_width="match_parent"
+	    android:orientation="vertical"
+	    android:gravity="center">
+
+	    <TextView
+		    android:id="@+id/restaurantNameTxt"
+		    android:text="Adonis"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:textSize="35sp"/>
+	    <TextView
+		    android:id="@+id/restaurantAddressTxt"
+		    android:text="Östregårdsgatan 36, Växjö"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:textSize="20sp"/>
+	    <TextView
+		    android:id="@+id/restaurantPhoneTxt"
+		    android:text="0470-325 43"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:textSize="20sp"/>
+    </LinearLayout>
 
     <LinearLayout
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:orientation="vertical">
-		<LinearLayout
-			android:layout_height="wrap_content"
-			android:layout_width="match_parent"
-			android:orientation="horizontal"
-			android:gravity="center">
-
-			<TextView
-				android:id="@+id/restaurantNameTxt"
-				android:text="Adonis, "
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:textSize="25sp"
-				android:textAlignment="center"/>
-			<TextView
-				android:id="@+id/restaurantPhoneTxt"
-				android:text="0470-325 43"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:textSize="25sp"
-				android:textAlignment="center"/>
-
-		</LinearLayout>
-        <TextView
-            android:id="@+id/restaurantAddressTxt"
-            android:text="Östregårdsgatan 36, Växjö"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textAlignment="center"
-            android:gravity="center_horizontal" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#000"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="25dp"/>
-    </LinearLayout>
+        android:layout_height="1dp"
+        android:background="#000"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="25dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -68,11 +57,28 @@
 
         <TextView
             android:id="@+id/pizzaPrizeTxt"
-            android:text="55:-"
+            android:text="55"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:textSize="40sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+	        android:gravity="top"
+	        android:layout_marginTop="0dp"
+	        android:paddingTop="0dp"/>
+	    <TextView
+		    android:id="@+id/pizzaPrizeCentTxt"
+		    android:text="00"
+		    android:layout_width="wrap_content"
+		    android:layout_height="match_parent"
+		    android:textSize="15sp"
+		    android:textStyle="bold"
+		    android:gravity="top"
+		    android:layout_marginTop="7dp"/>
+	    <TextView
+		    android:text=":-"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:textSize="40sp" />
 
     </LinearLayout>
 
@@ -91,20 +97,25 @@
 	<LinearLayout
 		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
+		android:orientation="horizontal"
 		android:gravity="center">
 
 		<TextView
-			android:text="Betyg: "
-			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textSize="28sp" />
+			android:layout_width="wrap_content"
+			android:text="Betyg:"
+			android:textSize="30sp"/>
+
 		<RatingBar
 			android:id="@+id/pizzaRating"
-			android:layout_height="wrap_content"
+			android:scaleY=".8"
+			android:scaleX=".8"
+			android:layout_marginLeft="-10dp"
+			android:layout_height="45dp"
 			android:layout_width="wrap_content"
 			android:numStars="5"
 			android:stepSize="1"/>
 
-		</LinearLayout>
+	</LinearLayout>
 
 </LinearLayout>

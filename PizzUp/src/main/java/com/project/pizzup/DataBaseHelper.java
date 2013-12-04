@@ -19,8 +19,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 
@@ -225,7 +223,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 			pizzeria.id = cursor.getInt(id);
 			pizzeria.name = cursor.getString(name);
 			pizzeria.address = cursor.getString(address);
-			pizzeria.phone = cursor.getInt(phone);
+			pizzeria.phone = cursor.getString(phone);
 			pizzeria.rating = cursor.getInt(rating);
 			return pizzeria;
 		}
@@ -248,7 +246,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 			pizzeria.id = cursor.getInt(id);
 			pizzeria.name = cursor.getString(name);
 			pizzeria.address = cursor.getString(address);
-			pizzeria.phone = cursor.getInt(phone);
+			pizzeria.phone = cursor.getString(phone);
 			pizzeria.rating = cursor.getInt(rating);
 			pizzerias.add(pizzeria);
 		}
