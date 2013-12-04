@@ -16,7 +16,12 @@ import android.widget.TextView;
 import com.project.pizzup.Objects.MenuAdapter;
 import com.project.pizzup.Objects.Pizza;
 import com.project.pizzup.Objects.Pizzeria;
+import com.project.pizzup.Objects.Sorting;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ResActivity extends Activity implements View.OnClickListener, RatingBar.OnRatingBarChangeListener, MenuItem.OnMenuItemClickListener {
@@ -51,7 +56,7 @@ public class ResActivity extends Activity implements View.OnClickListener, Ratin
 
 	    Log.i("pizz",pizzeria.id+"");
 
-	    pizzas = myDbHelper.getAllPizzas(pizzeria.id, null);
+	    pizzas = myDbHelper.getAllPizzas(pizzeria.id, Sorting.NAME);
 
 	    itemName.setText(pizzeria.name);
 	    itemAdress.setText(pizzeria.address);
@@ -63,6 +68,7 @@ public class ResActivity extends Activity implements View.OnClickListener, Ratin
 
 	    listView = (ListView) findViewById(R.id.pizzaMenu);
         listView.setAdapter(menuAdapter);
+
         menuAdapter.notifyDataSetChanged();
 
         // ListView Item Click Listener
@@ -85,7 +91,7 @@ public class ResActivity extends Activity implements View.OnClickListener, Ratin
 	public void onResume(){
 		super.onResume();
 		menuAdapter.clear();
-		menuAdapter.addAll(myDbHelper.getAllPizzas(pizzeria.id, null));
+		menuAdapter.addAll(myDbHelper.getAllPizzas(pizzeria.id, Sorting.NAME));
 	}
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -144,13 +150,20 @@ public class ResActivity extends Activity implements View.OnClickListener, Ratin
     @Override
     public boolean onMenuItemClick(MenuItem menuItem) {
         if (menuItem.equals(ratingItem)){
-            myDbHelper.getAllPizzas(pizzeria.id, "rating");
+            pizzas = myDbHelper.getAllPizzas(pizzeria.id, Sorting.RATING);
         } else if (menuItem.equals(priceItem)){
-            myDbHelper.getAllPizzas(pizzeria.id, "price");
+            pizzas = myDbHelper.getAllPizzas(pizzeria.id, Sorting.PRICE);
         } else if (menuItem.equals(nameItem)) {
-            myDbHelper.getAllPizzas(pizzeria.id, "name");
+            pizzas = myDbHelper.getAllPizzas(pizzeria.id, Sorting.NAME);
+        } else {
+           return false;
         }
-        return false;
+
+        menuAdapter = new MenuAdapter(this, R.layout.pizza_list_item, pizzas);
+        listView.setAdapter(menuAdapter);
+        menuAdapter.notifyDataSetChanged();
+
+        return true;
     }
 
 	@Override

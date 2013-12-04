@@ -12,12 +12,15 @@ import android.util.Log;
 import com.project.pizzup.Objects.Ingredient;
 import com.project.pizzup.Objects.Pizza;
 import com.project.pizzup.Objects.Pizzeria;
+import com.project.pizzup.Objects.Sorting;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -164,12 +167,22 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 				null, null, null, null, null, null);
 
 	}
-	public Cursor getPizzaCursor(int restaurantId, String orderBy){
+	public Cursor getPizzaCursor(int restaurantId, Sorting orderBy){
         String query;
-        if (orderBy == null){
-            query = "SELECT p._id, p.name, p.price, p.rating FROM pizza AS p LEFT JOIN restaurant AS r ON r._id = p.r_id WHERE r._id = ?"; // ORDER BY p.price
-        } else {
-            query = "SELECT p._id, p.name, p.price, p.rating FROM pizza AS p LEFT JOIN restaurant AS r ON r._id = p.r_id WHERE r._id = ? ORDER BY p." + orderBy;
+        if (orderBy == null)
+            orderBy = Sorting.NAME;
+
+        switch (orderBy) {
+            case RATING:
+                query = "SELECT p._id, p.name, p.price, p.rating FROM pizza AS p LEFT JOIN restaurant AS r ON r._id = p.r_id WHERE r._id = ? ORDER BY p." + orderBy + " DESC";
+                break;
+            case NAME:
+            case PRICE:
+                query = "SELECT p._id, p.name, p.price, p.rating FROM pizza AS p LEFT JOIN restaurant AS r ON r._id = p.r_id WHERE r._id = ? ORDER BY p." + orderBy + " ASC";
+            break;
+            default:
+                query = "SELECT p._id, p.name, p.price, p.rating FROM pizza AS p LEFT JOIN restaurant AS r ON r._id = p.r_id WHERE r._id = ?"; // ORDER BY p.price
+            break;
         }
         String[] args = {""+restaurantId};
 
@@ -242,8 +255,9 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		return pizzerias;
 	}
 
-	public List<Pizza> getAllPizzas(int restaurantId, String orderBy){
+	public List<Pizza> getAllPizzas(int restaurantId, Sorting orderBy){
 		List<Pizza> pizzas = new ArrayList<Pizza>();
+        Log.d("getAllPizzas", "Sorting by: " + orderBy);
 
 		Cursor cursor = getPizzaCursor(restaurantId, orderBy);
 
@@ -262,12 +276,12 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 			Log.i("pizz", cursor.getPosition() + pizza.id + ":" + pizza.name + ":" + pizza.price + ":" + pizza.rating);
 			pizzas.add(pizza);
 		}
+
 		return pizzas;
 	}
 
 	public List<Ingredient> getPizzaIngredients(int pizzaId){
 		List<Ingredient> ingredients = new ArrayList<Ingredient>();
-
 		Cursor cursor = getIngredientCursor(pizzaId);
 
 		int id = cursor.getColumnIndex(Pizza.ID);

@@ -38,7 +38,7 @@ public class IngredientAdminActivity extends Activity implements View.OnClickLis
     public boolean onCreateOptionsMenu(Menu menu) {
         
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.ingredient_admin, menu);
+        //getMenuInflater().inflate(R.menu.ingredient_admin, menu);
         return true;
     }
 
@@ -48,7 +48,7 @@ public class IngredientAdminActivity extends Activity implements View.OnClickLis
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
-            case R.id.action_settings:
+            case R.id.action_admin:
                 return true;
         }
         return super.onOptionsItemSelected(item);
