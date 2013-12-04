@@ -102,11 +102,8 @@ public class ResActivity extends Activity implements View.OnClickListener, Ratin
         ratingItem = menu.getItem(1);
         priceItem = menu.getItem(2);
         nameItem = menu.getItem(3);
-        //ratingItem = (MenuItem) findViewById(R.id.action_rating);
         ratingItem.setOnMenuItemClickListener(this);
-        //priceItem = (MenuItem) findViewById(R.id.action_price);
         priceItem.setOnMenuItemClickListener(this);
-        //nameItem = (MenuItem) findViewById(R.id.action_name);
         nameItem.setOnMenuItemClickListener(this);
 
         return true;

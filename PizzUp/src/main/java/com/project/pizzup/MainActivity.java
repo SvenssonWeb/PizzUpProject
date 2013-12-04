@@ -84,6 +84,8 @@ public class MainActivity extends Activity {
 
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
+
+
 		return true;
 	}
 
@@ -94,12 +96,18 @@ public class MainActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		switch (item.getItemId()) {
 			case R.id.action_admin:
+                openAdmin();
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
-	public void toRestaurant(Pizzeria pizzeria){
+    private void openAdmin() {
+        Intent myIntent = new Intent(this, AdminMainActivity.class);
+        this.startActivity(myIntent);
+    }
+
+    public void toRestaurant(Pizzeria pizzeria){
 		Intent intent = new Intent(this, ResActivity.class);
 		intent.putExtra(EXTRA_MESSAGE, pizzeria);
 		startActivity(intent);

@@ -38,12 +38,16 @@
             android:label="@string/title_activity_pizza" >
         </activity>
         <activity
-            android:name="com.project.pizzup.Ingredients"
-            android:label="@string/title_activity_ingredients" >
+            android:name="com.project.pizzup.AdminMainActivity"
+            android:label="@string/title_activity_admin_main" >
         </activity>
         <activity
-            android:name="com.project.pizzup.Ingredient"
-            android:label="@string/title_activity_ingredient" >
+            android:name="com.project.pizzup.AdminPizzaActivity"
+            android:label="@string/title_activity_admin_pizza" >
+        </activity>
+        <activity
+            android:name="com.project.pizzup.AdminPizzeriaActivity"
+            android:label="@string/title_activity_admin_pizzeria" >
         </activity>
         <activity
             android:name="com.project.pizzup.IngredientAdminActivity"

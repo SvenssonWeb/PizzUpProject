@@ -34,16 +34,16 @@ public class AdminMainActivity extends Activity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         if (v == btnAddPizza) {
-            Intent myIntent = new Intent(AdminMainActivity.this, AdminPizzaActivity.class);
-            AdminMainActivity.this.startActivity(myIntent);
+            Intent myIntent = new Intent(this, AdminPizzaActivity.class);
+            this.startActivity(myIntent);
         }
         if (v == btnAddIngredients) {
-            Intent myIntent = new Intent(AdminMainActivity.this, IngredientAdminActivity.class);
-            AdminMainActivity.this.startActivity(myIntent);
+            Intent myIntent = new Intent(this, IngredientAdminActivity.class);
+            this.startActivity(myIntent);
         }
         if (v == btnAddPizzeria) {
-            Intent myIntent = new Intent(AdminMainActivity.this, AdminPizzeriaActivity.class);
-            AdminMainActivity.this.startActivity(myIntent);
+            Intent myIntent = new Intent(this, AdminPizzeriaActivity.class);
+            this.startActivity(myIntent);
         }
     }
 }
