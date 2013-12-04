@@ -37,5 +37,13 @@ public class AdminMainActivity extends Activity implements View.OnClickListener 
             Intent myIntent = new Intent(AdminMainActivity.this, AdminPizzaActivity.class);
             AdminMainActivity.this.startActivity(myIntent);
         }
+        if (v == btnAddIngredients) {
+            Intent myIntent = new Intent(AdminMainActivity.this, IngredientAdminActivity.class);
+            AdminMainActivity.this.startActivity(myIntent);
+        }
+        if (v == btnAddPizzeria) {
+            Intent myIntent = new Intent(AdminMainActivity.this, AdminPizzeriaActivity.class);
+            AdminMainActivity.this.startActivity(myIntent);
+        }
     }
 }
