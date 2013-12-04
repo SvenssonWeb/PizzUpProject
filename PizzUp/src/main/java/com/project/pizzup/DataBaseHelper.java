@@ -187,8 +187,13 @@ public class DataBaseHelper extends SQLiteOpenHelper{
         values.put("name", ingredient);
 
         return myDataBase.insert("ingredient", null, values);
+    }
 
+    public long createRestaurant(String pizzeria){
+        ContentValues values = new ContentValues();
+        values.put("name", pizzeria);
 
+        return myDataBase.insert("restaurant", null, values);
     }
 
 	public Pizzeria getRestaurant(int restaurantID){
