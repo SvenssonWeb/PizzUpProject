@@ -11,6 +11,8 @@ import android.widget.TextView;
  */
 public class AdminPizzeriaActivity extends Activity implements View.OnClickListener {
     TextView pizzeria;
+    TextView address;
+    TextView phone;
     Button addBtn;
     DataBaseHelper db;
 
@@ -21,6 +23,8 @@ public class AdminPizzeriaActivity extends Activity implements View.OnClickListe
         db = MainActivity.myDbHelper;
 
         pizzeria = (TextView) findViewById(R.id.pizzeriaAddName);
+        address = (TextView) findViewById(R.id.pizzeriaAddAddress);
+        phone = (TextView) findViewById(R.id.pizzeriaAddPhone);
         addBtn = (Button) findViewById(R.id.admin_addPizzeria_btn);
 
         addBtn.setOnClickListener(this);
