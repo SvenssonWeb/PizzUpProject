@@ -176,6 +176,16 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 
 		return myDataBase.rawQuery(query, args);
 	}
+
+    public long createIngredients(String ingredient){
+        ContentValues values = new ContentValues();
+        values.put("name", ingredient);
+
+        return myDataBase.insert("ingredient", null, values);
+
+
+    }
+
 	public Pizzeria getRestaurant(int restaurantID){
 		String query = "SELECT * FROM restaurant AS r WHERE r._id = ?";
 		String[] args = {""+restaurantID};

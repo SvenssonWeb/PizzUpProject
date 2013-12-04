@@ -8,5 +8,8 @@
     <string name="title_activity_res">PizzUp</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_pizza">PizzUp</string>
+    <string name="title_activity_ingredients">Ingredients</string>
+    <string name="title_activity_ingredient">Ingredient</string>
+    <string name="title_activity_ingredient_admin">IngredientAdminActivity</string>
 
 </resources>
