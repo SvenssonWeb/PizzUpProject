@@ -37,6 +37,18 @@
             android:name="com.project.pizzup.PizzaActivity"
             android:label="@string/title_activity_pizza" >
         </activity>
+        <activity
+            android:name="com.project.pizzup.Ingredients"
+            android:label="@string/title_activity_ingredients" >
+        </activity>
+        <activity
+            android:name="com.project.pizzup.Ingredient"
+            android:label="@string/title_activity_ingredient" >
+        </activity>
+        <activity
+            android:name="com.project.pizzup.IngredientAdminActivity"
+            android:label="@string/title_activity_ingredient_admin" >
+        </activity>
     </application>
 
 </manifest>
