@@ -65,7 +65,7 @@ public class MainActivity extends Activity {
 
 				// Show Alert
 				assert item != null;
-				Log.i("pizz",  myDbHelper.getAllPizzas(item.id).get(0).name);
+				Log.i("pizz",  myDbHelper.getAllPizzas(item.id, null).get(0).name);
 				toRestaurant(item);
 			}
 
@@ -92,7 +92,7 @@ public class MainActivity extends Activity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		switch (item.getItemId()) {
-			case R.id.action_settings:
+			case R.id.action_admin:
 				return true;
 		}
 		return super.onOptionsItemSelected(item);

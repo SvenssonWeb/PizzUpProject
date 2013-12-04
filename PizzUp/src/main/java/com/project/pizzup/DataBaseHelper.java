@@ -164,9 +164,14 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 				null, null, null, null, null, null);
 
 	}
-	public Cursor getPizzaCursor(int restaurantId){
-		String query = "SELECT p._id, p.name, p.price, p.rating FROM pizza AS p LEFT JOIN restaurant AS r ON r._id = p.r_id WHERE r._id = ?";
-		String[] args = {""+restaurantId};
+	public Cursor getPizzaCursor(int restaurantId, String orderBy){
+        String query;
+        if (orderBy == null){
+            query = "SELECT p._id, p.name, p.price, p.rating FROM pizza AS p LEFT JOIN restaurant AS r ON r._id = p.r_id WHERE r._id = ?"; // ORDER BY p.price
+        } else {
+            query = "SELECT p._id, p.name, p.price, p.rating FROM pizza AS p LEFT JOIN restaurant AS r ON r._id = p.r_id WHERE r._id = ? ORDER BY p." + orderBy;
+        }
+        String[] args = {""+restaurantId};
 
 		return myDataBase.rawQuery(query, args);
 	}
@@ -232,10 +237,10 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		return pizzerias;
 	}
 
-	public List<Pizza> getAllPizzas(int restaurantId){
+	public List<Pizza> getAllPizzas(int restaurantId, String orderBy){
 		List<Pizza> pizzas = new ArrayList<Pizza>();
 
-		Cursor cursor = getPizzaCursor(restaurantId);
+		Cursor cursor = getPizzaCursor(restaurantId, orderBy);
 
 		int id = cursor.getColumnIndex(Pizza.ID);
 		int name = cursor.getColumnIndex(Pizza.NAME);

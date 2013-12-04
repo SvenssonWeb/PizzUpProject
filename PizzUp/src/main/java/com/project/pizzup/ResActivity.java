@@ -19,7 +19,7 @@ import com.project.pizzup.Objects.Pizzeria;
 
 import java.util.List;
 
-public class ResActivity extends Activity implements View.OnClickListener, RatingBar.OnRatingBarChangeListener {
+public class ResActivity extends Activity implements View.OnClickListener, RatingBar.OnRatingBarChangeListener, MenuItem.OnMenuItemClickListener {
 
     public final static String COM_PROJECT_PIZZUP_MESSAGE_PIZZA = "com.project.pizzup.MESSAGE.PIZZA";
     public final static String COM_PROJECT_PIZZUP_MESSAGE_PIZZERIA = "com.project.pizzup.MESSAGE.PIZZERIA";
@@ -31,6 +31,9 @@ public class ResActivity extends Activity implements View.OnClickListener, Ratin
 	TextView itemAdress;
 	RatingBar ratingBar;
 	MenuAdapter menuAdapter;
+    MenuItem ratingItem;
+    MenuItem priceItem;
+    MenuItem nameItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +51,7 @@ public class ResActivity extends Activity implements View.OnClickListener, Ratin
 
 	    Log.i("pizz",pizzeria.id+"");
 
-	    pizzas = myDbHelper.getAllPizzas(pizzeria.id);
+	    pizzas = myDbHelper.getAllPizzas(pizzeria.id, null);
 
 	    itemName.setText(pizzeria.name);
 	    itemAdress.setText(pizzeria.address);
@@ -82,13 +85,24 @@ public class ResActivity extends Activity implements View.OnClickListener, Ratin
 	public void onResume(){
 		super.onResume();
 		menuAdapter.clear();
-		menuAdapter.addAll(myDbHelper.getAllPizzas(pizzeria.id));
+		menuAdapter.addAll(myDbHelper.getAllPizzas(pizzeria.id, null));
 	}
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.res, menu);
+
+        ratingItem = menu.getItem(1);
+        priceItem = menu.getItem(2);
+        nameItem = menu.getItem(3);
+        //ratingItem = (MenuItem) findViewById(R.id.action_rating);
+        ratingItem.setOnMenuItemClickListener(this);
+        //priceItem = (MenuItem) findViewById(R.id.action_price);
+        priceItem.setOnMenuItemClickListener(this);
+        //nameItem = (MenuItem) findViewById(R.id.action_name);
+        nameItem.setOnMenuItemClickListener(this);
+
         return true;
     }
 
@@ -98,7 +112,7 @@ public class ResActivity extends Activity implements View.OnClickListener, Ratin
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
-            case R.id.action_settings:
+            case R.id.action_admin:
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -118,9 +132,26 @@ public class ResActivity extends Activity implements View.OnClickListener, Ratin
 		i = new Intent(Intent.ACTION_VIEW, Uri.parse(map));
 		if (v.equals(null)){
 			i = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:123"));
-		}
+		} else if (v.equals(itemAdress)){
+
+        }
 		startActivity(i);
-	}
+
+//        myDbHelper.getAllPizzas(pizzeria.id, "rating");
+
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        if (menuItem.equals(ratingItem)){
+            myDbHelper.getAllPizzas(pizzeria.id, "rating");
+        } else if (menuItem.equals(priceItem)){
+            myDbHelper.getAllPizzas(pizzeria.id, "price");
+        } else if (menuItem.equals(nameItem)) {
+            myDbHelper.getAllPizzas(pizzeria.id, "name");
+        }
+        return false;
+    }
 
 	@Override
 	public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
