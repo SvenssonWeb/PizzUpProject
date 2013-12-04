@@ -34,7 +34,7 @@ public class AdminPizzeriaActivity extends Activity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v == addBtn) {
-            db.createRestaurant(pizzeria.getText().toString());
+            db.createRestaurant(pizzeria.getText().toString(), address.getText().toString(), phone.getText().toString());
             finish();
         }
     }
