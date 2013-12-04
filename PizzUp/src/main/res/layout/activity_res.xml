@@ -1,84 +1,22 @@
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	    xmlns:tools="http://schemas.android.com/tools"
-	    android:id="@+id/resView"
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:paddingLeft="@dimen/activity_horizontal_margin"
-	    android:paddingRight="@dimen/activity_horizontal_margin"
-	    android:paddingTop="@dimen/activity_vertical_margin"
-	    android:paddingBottom="@dimen/activity_vertical_margin"
-	    tools:context=".MainActivity$PlaceholderFragment"
-	    android:textAlignment="center"
-	    android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/resView"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context=".MainActivity"
+              android:textAlignment="center"
+              android:orientation="vertical">
 
-	    <LinearLayout
-		    android:layout_height="wrap_content"
-		    android:layout_width="match_parent"
-		    android:orientation="vertical"
-		    android:gravity="center">
+	<include layout="@layout/part_restaurant"/>
 
-		    <TextView
-			    android:id="@+id/resTitle"
-			    android:text="Adonis"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:textSize="35sp"/>
-		    <TextView
-			    android:id="@+id/resAdress"
-			    android:text="Östregårdsgatan 36, Växjö"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:textSize="20sp"/>
-		    <TextView
-			    android:id="@+id/resPhone"
-			    android:text="0470-325 43"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:textSize="20sp"/>
-	    </LinearLayout>
+	<ListView
+		android:id="@+id/pizzaMenu"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1">
+	</ListView>
 
-	    <LinearLayout
-		    android:layout_width="match_parent"
-		    android:layout_height="1dp"
-		    android:background="#000"
-		    android:layout_marginTop="2dp"
-		    android:layout_marginBottom="25dp"/>
+	<include layout="@layout/part_rating"/>
 
-	    <ListView
-		    android:id="@+id/pizzaMenu"
-		    android:layout_width="match_parent"
-		    android:layout_height="0dp"
-		    android:layout_weight="1">
-	    </ListView>
-	    <LinearLayout
-		    android:layout_width="match_parent"
-		    android:layout_height="1dp"
-		    android:background="#000"
-		    android:layout_marginTop="0dp"
-		    android:layout_marginBottom="5dp"/>
-	    <LinearLayout
-		    android:layout_height="wrap_content"
-		    android:layout_width="match_parent"
-		    android:orientation="horizontal"
-		    android:gravity="center">
-
-		    <TextView
-			    android:layout_height="wrap_content"
-			    android:layout_width="wrap_content"
-			    android:text="Betyg:"
-			    android:textSize="30sp"/>
-
-		    <RatingBar
-			    android:id="@+id/resRatingBar"
-			    android:scaleY=".8"
-			    android:scaleX=".8"
-			    android:layout_marginLeft="-10dp"
-			    android:layout_height="45dp"
-			    android:layout_width="wrap_content"
-			    android:numStars="5"
-			    android:stepSize="1"/>
-
-	    </LinearLayout>
-
-   </LinearLayout>
+</LinearLayout>
 

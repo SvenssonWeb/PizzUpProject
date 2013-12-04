@@ -1,0 +1,36 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:paddingLeft="@dimen/activity_horizontal_margin"
+	android:paddingRight="@dimen/activity_horizontal_margin"
+	android:paddingTop="@dimen/activity_vertical_margin"
+	android:layout_height="wrap_content"
+	android:layout_width="match_parent"
+	android:orientation="vertical"
+	android:gravity="center">
+
+	<TextView
+		android:id="@+id/resTitle"
+		android:text="Adonis"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textSize="35sp"/>
+
+	<TextView
+		android:id="@+id/resAdress"
+		android:text="Östregårdsgatan 36, Växjö"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textSize="20sp"/>
+
+	<TextView
+		android:id="@+id/resPhone"
+		android:text="0470-325 43"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textSize="20sp"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="#000"
+		android:layout_marginTop="2dp"/>
+</LinearLayout>

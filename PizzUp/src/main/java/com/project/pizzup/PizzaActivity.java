@@ -1,6 +1,7 @@
 package com.project.pizzup;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -32,14 +33,14 @@ public class PizzaActivity extends Activity implements RatingBar.OnRatingBarChan
         setContentView(R.layout.activity_pizza);
 		myDbHelper = MainActivity.myDbHelper;
 
-		resTitle = (TextView) findViewById(R.id.restaurantNameTxt);
-		resPhone = (TextView) findViewById(R.id.restaurantPhoneTxt);
-		resAddress = (TextView) findViewById(R.id.restaurantAddressTxt);
+		resTitle = (TextView) findViewById(R.id.resTitle);
+		resPhone = (TextView) findViewById(R.id.resPhone);
+		resAddress = (TextView) findViewById(R.id.resAdress);
 		pizzaTitle = (TextView) findViewById(R.id.pizzaNameTxt);
 		pizzaPrice = (TextView) findViewById(R.id.pizzaPrizeTxt);
 		pizzaPriceCent = (TextView) findViewById(R.id.pizzaPrizeCentTxt);
 		pizzaIngredient = (TextView) findViewById(R.id.pizzaIngredientsTxt);
-		pizzaRating = (RatingBar) findViewById(R.id.pizzaRating);
+		pizzaRating = (RatingBar) findViewById(R.id.ratingBar);
 		pizzaRating.setOnRatingBarChangeListener(this);
 
 		Bundle data = getIntent().getExtras();
@@ -89,5 +90,15 @@ public class PizzaActivity extends Activity implements RatingBar.OnRatingBarChan
 	public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
 		int temp = myDbHelper.setPizzaRating(pizza.id, rating);
 		Log.i("pizz", "Database returnvalue: " + temp);
+	}
+
+	public boolean onNavigateUp(){
+		Intent upIntent = getParentActivityIntent();
+		if (upIntent != null) {
+			upIntent.putExtra(MainActivity.EXTRA_MESSAGE, pizzeria);
+			navigateUpTo(upIntent);
+			return true;
+		}
+		return false;
 	}
 }

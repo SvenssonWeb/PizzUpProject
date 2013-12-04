@@ -24,6 +24,7 @@ public class ResActivity extends Activity implements View.OnClickListener, Ratin
 
     public final static String COM_PROJECT_PIZZUP_MESSAGE_PIZZA = "com.project.pizzup.MESSAGE.PIZZA";
     public final static String COM_PROJECT_PIZZUP_MESSAGE_PIZZERIA = "com.project.pizzup.MESSAGE.PIZZERIA";
+	Sorting sorting = Sorting.PRICE;
     ListView listView;
     DataBaseHelper myDbHelper;
 	Pizzeria pizzeria;
@@ -46,15 +47,16 @@ public class ResActivity extends Activity implements View.OnClickListener, Ratin
 	    itemName = (TextView) findViewById(R.id.resTitle);
 	    itemAdress = (TextView) findViewById(R.id.resAdress);
 	    itemPhone = (TextView) findViewById(R.id.resPhone);
-	    ratingBar = (RatingBar) findViewById(R.id.resRatingBar);
+	    ratingBar = (RatingBar) findViewById(R.id.ratingBar);
 
 	    Bundle data = getIntent().getExtras();
+
 	    assert data != null;
 	    pizzeria = data.getParcelable(MainActivity.EXTRA_MESSAGE);
 
 	    Log.i("pizz",pizzeria.id+"");
 
-	    pizzas = myDbHelper.getAllPizzas(pizzeria.id, Sorting.NAME);
+	    pizzas = myDbHelper.getAllPizzas(pizzeria.id, sorting);
 
 	    itemName.setText(pizzeria.name);
 	    itemAdress.setText(pizzeria.address);
@@ -64,7 +66,7 @@ public class ResActivity extends Activity implements View.OnClickListener, Ratin
 	    ratingBar.setRating(pizzeria.rating);
 	    ratingBar.setOnRatingBarChangeListener(this);
 
-	    menuAdapter = new MenuAdapter(this, R.layout.pizza_list_item, pizzas);
+	    menuAdapter = new MenuAdapter(this, R.layout.list_item_pizza, pizzas);
 
 	    listView = (ListView) findViewById(R.id.pizzaMenu);
         listView.setAdapter(menuAdapter);
@@ -91,7 +93,7 @@ public class ResActivity extends Activity implements View.OnClickListener, Ratin
 	public void onResume(){
 		super.onResume();
 		menuAdapter.clear();
-		menuAdapter.addAll(myDbHelper.getAllPizzas(pizzeria.id, Sorting.NAME));
+		menuAdapter.addAll(myDbHelper.getAllPizzas(pizzeria.id, sorting));
 	}
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -147,16 +149,17 @@ public class ResActivity extends Activity implements View.OnClickListener, Ratin
     @Override
     public boolean onMenuItemClick(MenuItem menuItem) {
         if (menuItem.equals(ratingItem)){
-            pizzas = myDbHelper.getAllPizzas(pizzeria.id, Sorting.RATING);
+            sorting = Sorting.RATING;
         } else if (menuItem.equals(priceItem)){
-            pizzas = myDbHelper.getAllPizzas(pizzeria.id, Sorting.PRICE);
+            sorting = Sorting.PRICE;
         } else if (menuItem.equals(nameItem)) {
-            pizzas = myDbHelper.getAllPizzas(pizzeria.id, Sorting.NAME);
+            sorting = Sorting.NAME;
         } else {
            return false;
         }
+	    pizzas = myDbHelper.getAllPizzas(pizzeria.id, sorting);
 
-        menuAdapter = new MenuAdapter(this, R.layout.pizza_list_item, pizzas);
+        menuAdapter = new MenuAdapter(this, R.layout.list_item_pizza, pizzas);
         listView.setAdapter(menuAdapter);
         menuAdapter.notifyDataSetChanged();
 

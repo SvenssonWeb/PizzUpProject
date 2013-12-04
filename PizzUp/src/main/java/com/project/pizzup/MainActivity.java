@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
 
 		List<Pizzeria> pizzerias = myDbHelper.getAllRestaurants();
 
-		resAdapter = new ResAdapter(this, R.layout.res_list_item, pizzerias);
+		resAdapter = new ResAdapter(this, R.layout.list_item_res, pizzerias);
 
 		// Define a new Adapter
 		// First parameter - Context

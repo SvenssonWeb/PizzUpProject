@@ -31,10 +31,12 @@
         </activity>
         <activity
             android:name="com.project.pizzup.ResActivity"
+            android:parentActivityName="MainActivity"
             android:label="@string/title_activity_res" >
         </activity>
         <activity
             android:name="com.project.pizzup.PizzaActivity"
+            android:parentActivityName="ResActivity"
             android:label="@string/title_activity_pizza" >
         </activity>
         <activity
