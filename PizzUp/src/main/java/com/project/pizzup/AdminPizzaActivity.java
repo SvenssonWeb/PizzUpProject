@@ -8,7 +8,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.project.pizzup.Objects.Pizzeria;
-import com.project.pizzup.Objects.ResAdapter;
 
 import java.util.List;
 
@@ -20,7 +19,6 @@ public class AdminPizzaActivity extends Activity implements View.OnClickListener
     TextView pizza;
     ListView pizzeria;
     List<Pizzeria> restaurants;
-    ResAdapter resAdapter;
     //CheckBox ingredient;
 
     Button addBtn;
@@ -31,15 +29,10 @@ public class AdminPizzaActivity extends Activity implements View.OnClickListener
         setContentView(R.layout.activity_admin_pizza);
         db = MainActivity.myDbHelper;
 
-        resAdapter = new ResAdapter(this, R.id.pizzaAddPizzeria, restaurants);
-
         restaurants = db.getAllRestaurants();
         pizzeria = (ListView) findViewById(R.id.pizzaAddPizzeria);
-        pizzeria.setAdapter(resAdapter);
-        resAdapter.notifyDataSetChanged();
 
         pizza = (TextView) findViewById(R.id.pizzaAddName);
-        pizzeria = (ListView) findViewById(R.id.pizzaAddPizzeria);
 
         addBtn = (Button) findViewById(R.id.admin_addPizza_btn);
         addBtn.setOnClickListener(this);
