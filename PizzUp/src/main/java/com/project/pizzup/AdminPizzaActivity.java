@@ -3,9 +3,10 @@ package com.project.pizzup;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.project.pizzup.Objects.Pizzeria;
 
@@ -16,10 +17,9 @@ import java.util.List;
  */
 public class AdminPizzaActivity extends Activity implements View.OnClickListener {
     DataBaseHelper db;
-    TextView pizza;
+    EditText pizza;
+    EditText price;
     ListView pizzeria;
-    List<Pizzeria> restaurants;
-    //CheckBox ingredient;
 
     Button addBtn;
 
@@ -29,10 +29,14 @@ public class AdminPizzaActivity extends Activity implements View.OnClickListener
         setContentView(R.layout.activity_admin_pizza);
         db = MainActivity.myDbHelper;
 
-        restaurants = db.getAllRestaurants();
         pizzeria = (ListView) findViewById(R.id.pizzaAddPizzeria);
+        List<Pizzeria> restaurants = db.getAllRestaurants();
 
-        pizza = (TextView) findViewById(R.id.pizzaAddName);
+        ArrayAdapter<Pizzeria> adapter = new ArrayAdapter<Pizzeria>(this, android.R.layout.simple_list_item_1, restaurants);
+        pizzeria.setAdapter(adapter);
+
+        pizza = (EditText) findViewById(R.id.pizzaAddName);
+        price = (EditText) findViewById(R.id.pizzaAddPrice);
 
         addBtn = (Button) findViewById(R.id.admin_addPizza_btn);
         addBtn.setOnClickListener(this);
@@ -41,11 +45,13 @@ public class AdminPizzaActivity extends Activity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        if (v == addBtn) {
+        /*if (v == addBtn) {
             pizza.getText().toString();
+            price.getText();
+
 
             //db.createPizza();
             finish();
-        }
+        }*/
     }
 }
