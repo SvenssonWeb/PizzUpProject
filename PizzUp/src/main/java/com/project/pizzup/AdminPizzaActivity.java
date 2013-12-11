@@ -1,6 +1,7 @@
 package com.project.pizzup;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -22,6 +23,9 @@ public class AdminPizzaActivity extends Activity implements View.OnClickListener
     EditText price;
     ListView pizzeria;
     ListView ingredients;
+
+    Button openIngred;
+    Button openRes;
 
     Button addBtn;
 
@@ -46,13 +50,26 @@ public class AdminPizzaActivity extends Activity implements View.OnClickListener
         price = (EditText) findViewById(R.id.pizzaAddPrice);
 
         addBtn = (Button) findViewById(R.id.admin_addPizza_btn);
+        openIngred = (Button) findViewById(R.id.admin_addIngred_btn);
+        openRes = (Button) findViewById(R.id.admin_addPizzeria_btn);
+
         addBtn.setOnClickListener(this);
+        openIngred.setOnClickListener(this);
+        openRes.setOnClickListener(this);
 
     }
 
 
     @Override
     public void onClick(View v) {
+        if (v == openRes) {
+            Intent myIntent = new Intent(this, AdminPizzaResActivity.class);
+            this.startActivity(myIntent);
+        }
+        if (v == openIngred) {
+            Intent myIntent = new Intent(this, AdminPizzaIngredActivity.class);
+            this.startActivity(myIntent);
+        }
         /*if (v == addBtn) {
             pizza.getText().toString();
             price.getText();
