@@ -56,6 +56,14 @@
             android:label="@string/title_activity_ingredient_admin" >
         </activity>
         <activity
+            android:name="com.project.pizzup.AdminPizzaIngredActivity"
+            android:label="@string/title_activity_admin_pizza_ingred" >
+        </activity>
+        <activity
+            android:name="com.project.pizzup.AdminPizzaResActivity"
+            android:label="@string/title_activity_admin_pizza_res" >
+        </activity>
+        <activity
             android:name="com.project.pizzup.FilterActivity"
             android:label="@string/title_activity_filter"
             android:parentActivityName="MainActivity" >

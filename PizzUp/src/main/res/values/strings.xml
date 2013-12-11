@@ -19,5 +19,7 @@
     <string name="title_activity_admin_main">Admin Main</string>
     <string name="title_activity_admin_pizza">Admin Pizza</string>
     <string name="title_activity_admin_pizzeria">Admin Pizzeria</string>
+    <string name="title_activity_admin_pizza_res">Admin Pizza Restaurant</string>
+    <string name="title_activity_admin_pizza_ingred">Admin Pizza Ingredients</string>
 
 </resources>
