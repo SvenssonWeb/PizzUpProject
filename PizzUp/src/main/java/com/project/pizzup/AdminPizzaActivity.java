@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.project.pizzup.Objects.Ingredient;
 import com.project.pizzup.Objects.Pizzeria;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class AdminPizzaActivity extends Activity implements View.OnClickListener
     EditText pizza;
     EditText price;
     ListView pizzeria;
+    ListView ingredients;
 
     Button addBtn;
 
@@ -31,9 +33,14 @@ public class AdminPizzaActivity extends Activity implements View.OnClickListener
 
         pizzeria = (ListView) findViewById(R.id.pizzaAddPizzeria);
         List<Pizzeria> restaurants = db.getAllRestaurants();
-
         ArrayAdapter<Pizzeria> adapter = new ArrayAdapter<Pizzeria>(this, android.R.layout.simple_list_item_1, restaurants);
         pizzeria.setAdapter(adapter);
+
+        ingredients = (ListView) findViewById(R.id.pizzaAddIngredient);
+        List<Ingredient> ingredient = db.getAllIngredients();
+        ArrayAdapter<Ingredient> adapter2 = new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_multiple_choice, ingredient);
+        ingredients.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        ingredients.setAdapter(adapter2);
 
         pizza = (EditText) findViewById(R.id.pizzaAddName);
         price = (EditText) findViewById(R.id.pizzaAddPrice);
@@ -42,6 +49,7 @@ public class AdminPizzaActivity extends Activity implements View.OnClickListener
         addBtn.setOnClickListener(this);
 
     }
+
 
     @Override
     public void onClick(View v) {

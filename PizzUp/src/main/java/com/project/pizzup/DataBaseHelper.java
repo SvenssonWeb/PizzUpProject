@@ -187,6 +187,12 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 
 		return myDataBase.rawQuery(query, args);
 	}
+
+    public Cursor getIngredCursor() {
+        return myDataBase.query(Ingredient.TABLE,
+                null, null, null, null, null, null);
+    }
+
 	public Cursor getIngredientCursor(int pizzaId){
 		String query = "SELECT * FROM ingredient AS i LEFT JOIN p_i ON p_i.i_id = i._id WHERE p_id = ?";
 		String[] args = {""+pizzaId};
@@ -233,7 +239,24 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		return null;
 	}
 
-	public List<Pizzeria> getAllRestaurants(){
+    public List<Ingredient> getAllIngredients(){
+        List<Ingredient> ingredients = new ArrayList<Ingredient>();
+
+        Cursor cursor = getIngredCursor();
+
+        int id = cursor.getColumnIndex(Ingredient.ID);
+        int name = cursor.getColumnIndex(Ingredient.NAME);
+
+        while (cursor.moveToNext()){
+            Ingredient ingredient = new Ingredient();
+            ingredient.id = cursor.getInt(id);
+            ingredient.name = cursor.getString(name);
+            ingredients.add(ingredient);
+        }
+        return ingredients;
+    }
+
+    public List<Pizzeria> getAllRestaurants(){
 		List<Pizzeria> pizzerias = new ArrayList<Pizzeria>();
 
 		Cursor cursor = getRestaurantCursor();
