@@ -193,8 +193,15 @@ public class DataBaseHelper extends SQLiteOpenHelper{
     }
 
 	public Cursor getIngredientCursor(int pizzaId){
-		String query = "SELECT * FROM ingredient AS i LEFT JOIN p_i ON p_i.i_id = i._id WHERE p_id = ?";
-		String[] args = {""+pizzaId};
+        String query;
+        String[] args = {};
+        if (pizzaId == -1) {
+            query = "SELECT * FROM ingredient";
+        } else {
+            query = "SELECT * FROM ingredient AS i LEFT JOIN p_i ON p_i.i_id = i._id WHERE p_id = ?";
+            args = new String[]{"" + pizzaId};
+        }
+
 
 		return myDataBase.rawQuery(query, args);
 	}
@@ -326,8 +333,8 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		List<Ingredient> ingredients = new ArrayList<Ingredient>();
 		Cursor cursor = getIngredientCursor(pizzaId);
 
-		int id = cursor.getColumnIndex(Pizza.ID);
-		int name = cursor.getColumnIndex(Pizza.NAME);
+		int id = cursor.getColumnIndex(Ingredient.ID);
+		int name = cursor.getColumnIndex(Ingredient.NAME);
 
 		while (cursor.moveToNext()){
 			Ingredient ingredient = new Ingredient();
@@ -360,4 +367,29 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 
 		return myDataBase.update(Pizza.TABLE, values, where, args);
 	}
+
+    public List<Pizza> getAllPizzasWithIngredient(int ingredientId) {
+        String query = "SELECT p.* from pizza p, p_i pi WHERE p._id = pi.p_id and pi.i_id= ?";
+        String[] args = {String.valueOf(ingredientId)};
+        Cursor cursor = myDataBase.rawQuery(query, args);
+
+        int id = cursor.getColumnIndex(Pizza.ID);
+        int name = cursor.getColumnIndex(Pizza.NAME);
+        int price = cursor.getColumnIndex(Pizza.PRICE);
+        int rating = cursor.getColumnIndex(Pizza.RATING);
+
+        List<Pizza> pizzas = new ArrayList<Pizza>();
+        while (cursor.moveToNext()){
+            Pizza pizza = new Pizza();
+            pizza.id = cursor.getInt(id);
+            pizza.name = cursor.getString(name);
+            pizza.price = cursor.getDouble(price);
+            pizza.rating = cursor.getInt(rating);
+            pizza.ingredients = getPizzaIngredients(pizza.id);
+            Log.i("pizz", cursor.getPosition() + pizza.id + ":" + pizza.name + ":" + pizza.price + ":" + pizza.rating);
+            pizzas.add(pizza);
+        }
+
+        return pizzas;
+    }
 }

@@ -4,4 +4,8 @@
         android:title="@string/action_admin"
         android:orderInCategory="100"
         android:showAsAction="never" />
+    <item android:id="@+id/action_filter"
+        android:title="Filter"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
 </menu>

@@ -23,6 +23,7 @@ public class Ingredient implements Parcelable {
 	}
 
 	public Ingredient() {}
+
     public String toString(){
         return name;
     }

@@ -13,32 +13,24 @@
         android:layout_width="match_parent"
         android:orientation="vertical">
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="CheckBox"
-            android:id="@+id/checkBox"
-            android:layout_gravity="left" />
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="CheckBox"
-            android:id="@+id/checkBox"
-            android:layout_gravity="left" />
+        <Spinner
+            android:id ="@+id/spinner"
+            android:layout_width = "match_parent"
+            android:layout_height = "wrap_content" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#000"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="0dp"/>
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="25dp"/>
+
     </LinearLayout>
 
     <ListView
         android:id="@+id/pizzaIngretient"
-        android:layout_width="92dp"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="left"
         android:layout_weight="1"

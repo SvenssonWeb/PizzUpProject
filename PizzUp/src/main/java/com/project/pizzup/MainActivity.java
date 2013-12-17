@@ -97,12 +97,19 @@ public class MainActivity extends Activity {
 			case R.id.action_admin:
                 openAdmin();
 				return true;
+            case R.id.action_filter:
+                openFilter();
+                return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
     private void openAdmin() {
         Intent myIntent = new Intent(this, AdminMainActivity.class);
+        this.startActivity(myIntent);
+    }
+    private void openFilter() {
+        Intent myIntent = new Intent(this, FilterActivity.class);
         this.startActivity(myIntent);
     }
 
