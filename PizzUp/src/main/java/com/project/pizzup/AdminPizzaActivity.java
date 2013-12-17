@@ -22,6 +22,8 @@ public class AdminPizzaActivity extends Activity implements View.OnClickListener
     EditText price;
     Button openIngred;
     Button openRes;
+    TextView pizzeriaName;
+    TextView ingredName;
 
     Button addBtn;
 
@@ -34,6 +36,8 @@ public class AdminPizzaActivity extends Activity implements View.OnClickListener
 
         pizza = (EditText) findViewById(R.id.pizzaAddName);
         price = (EditText) findViewById(R.id.pizzaAddPrice);
+        pizzeriaName = (TextView) findViewById(R.id.pizzeriaName);
+        ingredName = (TextView) findViewById(R.id.ingredName);
 
         addBtn = (Button) findViewById(R.id.admin_addPizza_btn);
         openIngred = (Button) findViewById(R.id.admin_addIngred_btn);
@@ -52,14 +56,15 @@ public class AdminPizzaActivity extends Activity implements View.OnClickListener
             case (STATIC_R) : {
                 if (resultCode == Activity.RESULT_OK) {
                     String res = data.getStringExtra(RES);
-                    //TextView setText(db.resById(Integer.parseInt(res)));
-                    //textview.settext(db.resbyid(Integer.parseInt(res)))
+                    pizzeriaName.setText("Vald pizzeria: " + db.getRestaurant(Integer.parseInt(res)).name);
+
                 }
                 break;
             }
             case (STATIC_I) : {
                 if (resultCode == Activity.RESULT_OK) {
                     String ingred = data.getStringExtra(INGRED);
+                    ingredName.setText("Valda ingredienser: " + db.get);
                 }
                 break;
             }

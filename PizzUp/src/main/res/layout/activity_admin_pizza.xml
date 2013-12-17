@@ -61,32 +61,45 @@
             android:orientation="horizontal"
             android:layout_marginBottom="10dp">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-        <Button
-            android:id="@+id/admin_addPizzeria_btn"
-            android:text="Välj restaurang"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Ingen pizzeria vald"
-            android:id="@+id/pizzeriaName"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <Button
+                    android:id="@+id/admin_addPizzeria_btn"
+                    android:text="Välj restaurang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Ingen pizzeria vald"
+                    android:id="@+id/pizzeriaName"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/admin_addIngred_btn"
+                    android:text="Välj ingredienser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Inga ingredienser valda"
+                    android:id="@+id/ingredName"/>
+            </LinearLayout>
         </LinearLayout>
 
-
-        <Button
-            android:id="@+id/admin_addIngred_btn"
-            android:text="Välj ingredienser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-        </LinearLayout>
         <Button
             android:id="@+id/admin_addPizza_btn"
             android:text="Spara Pizza"
