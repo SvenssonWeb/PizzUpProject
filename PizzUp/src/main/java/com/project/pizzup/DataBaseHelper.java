@@ -124,8 +124,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		//Open the database
 		String myPath = DB_PATH + DB_NAME;
 		myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
-        myDataBase = getWritableDatabase();
-
+		myDataBase = getWritableDatabase();
 	}
 
 	@Override
@@ -255,6 +254,25 @@ public class DataBaseHelper extends SQLiteOpenHelper{
         }
         return ingredients;
     }
+	public List<Ingredient> getIngredients(String ids){
+		List<Ingredient> ingredients = new ArrayList<Ingredient>();
+
+		String query = "SELECT * FROM ingredient WHERE _id IN (?)";
+		String[] args = {ids};
+
+		Cursor cursor = myDataBase.rawQuery(query, args);
+
+		int id = cursor.getColumnIndex(Ingredient.ID);
+		int name = cursor.getColumnIndex(Ingredient.NAME);
+
+		while (cursor.moveToNext()){
+			Ingredient ingredient = new Ingredient();
+			ingredient.id = cursor.getInt(id);
+			ingredient.name = cursor.getString(name);
+			ingredients.add(ingredient);
+		}
+		return ingredients;
+	}
 
     public List<Pizzeria> getAllRestaurants(){
 		List<Pizzeria> pizzerias = new ArrayList<Pizzeria>();

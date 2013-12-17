@@ -13,7 +13,6 @@ import android.widget.ListView;
 
 import com.project.pizzup.Objects.Pizzeria;
 import com.project.pizzup.Objects.ResAdapter;
-import com.project.pizzup.Objects.Sorting;
 
 import java.io.IOException;
 import java.util.List;
@@ -66,7 +65,7 @@ public class MainActivity extends Activity {
 
 				// Show Alert
 				assert item != null;
-				Log.i("pizz",  myDbHelper.getAllPizzas(item.id, Sorting.NAME).get(0).name);
+				//Log.i("pizz",  myDbHelper.getAllPizzas(item.id, Sorting.NAME).get(0).name);
 				toRestaurant(item);
 			}
 
