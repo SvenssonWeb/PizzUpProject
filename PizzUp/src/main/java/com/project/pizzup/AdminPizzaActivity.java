@@ -11,6 +11,11 @@ import android.widget.EditText;
  * Created by Hilda on 2013-12-03.
  */
 public class AdminPizzaActivity extends Activity implements View.OnClickListener {
+    public static final String RES = "";
+    public static final String INGRED = "";
+    private static final int STATIC_R = 10001;
+    private static final int STATIC_I = 20002;
+
     DataBaseHelper db;
     EditText pizza;
     EditText price;
@@ -38,24 +43,43 @@ public class AdminPizzaActivity extends Activity implements View.OnClickListener
 
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode) {
+            case (STATIC_R) : {
+                if (resultCode == Activity.RESULT_OK) {
+                    String res = data.getStringExtra(RES);
+                }
+                break;
+            }
+            case (STATIC_I) : {
+                if (resultCode == Activity.RESULT_OK) {
+                    String ingred = data.getStringExtra(INGRED);
+                }
+                break;
+            }
+            default:
+            // Default?
+        }
+    }
+
 
     @Override
     public void onClick(View v) {
         if (v == openRes) {
             Intent myIntent = new Intent(this, AdminPizzaResActivity.class);
-            this.startActivity(myIntent);
+            startActivityForResult(myIntent, STATIC_R);
         }
         if (v == openIngred) {
             Intent myIntent = new Intent(this, AdminPizzaIngredActivity.class);
-            this.startActivity(myIntent);
+            startActivityForResult(myIntent, STATIC_I);
+
         }
         /*if (v == addBtn) {
-            pizza.getText().toString();
-            price.getText();
-
-
             //db.createPizza();
             finish();
         }*/
     }
+
 }
