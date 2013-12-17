@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.project.pizzup.Objects.Ingredient;
+
 /**
  * Created by Hilda on 2013-12-03.
  */
@@ -64,7 +66,11 @@ public class AdminPizzaActivity extends Activity implements View.OnClickListener
             case (STATIC_I) : {
                 if (resultCode == Activity.RESULT_OK) {
                     String ingred = data.getStringExtra(INGRED);
-                    ingredName.setText("Valda ingredienser: " + db.get);
+                    String text = "";
+                    for (Ingredient i : db.getIngredients(ingred)){
+                        text += i.name + ", ";
+                    }
+                    ingredName.setText("Valda ingredienser: " + text);
                 }
                 break;
             }
