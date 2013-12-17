@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * Created by Hilda on 2013-12-03.
@@ -51,6 +52,8 @@ public class AdminPizzaActivity extends Activity implements View.OnClickListener
             case (STATIC_R) : {
                 if (resultCode == Activity.RESULT_OK) {
                     String res = data.getStringExtra(RES);
+                    //TextView setText(db.resById(Integer.parseInt(res)));
+                    //textview.settext(db.resbyid(Integer.parseInt(res)))
                 }
                 break;
             }
