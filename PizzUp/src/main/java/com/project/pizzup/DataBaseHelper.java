@@ -263,12 +263,12 @@ public class DataBaseHelper extends SQLiteOpenHelper{
     }
 	public List<Ingredient> getIngredients(String ids){
 		List<Ingredient> ingredients = new ArrayList<Ingredient>();
-
-		String query = "SELECT * FROM ingredient WHERE _id IN (?)";
-		String[] args = {ids};
+        ids = ids.substring(0, ids.length()-1);
+		String query = "SELECT * FROM ingredient WHERE _id IN (" + ids + ")";
+		String[] args = {};
 
 		Cursor cursor = myDataBase.rawQuery(query, args);
-
+        Log.i("asdasdas", cursor.getCount()+"");
 		int id = cursor.getColumnIndex(Ingredient.ID);
 		int name = cursor.getColumnIndex(Ingredient.NAME);
 
@@ -391,5 +391,25 @@ public class DataBaseHelper extends SQLiteOpenHelper{
         }
 
         return pizzas;
+    }
+
+    public void createPizza(AdminPizzaActivity.TempPizza pizza) {
+        // create pizza (name, price, r_id)
+        ContentValues values = new ContentValues();
+        values.put(Pizza.NAME, pizza.name);
+        values.put(Pizza.PRICE, pizza.price);
+        values.put("r_id", pizza.resID);
+        long pizzaID = myDataBase.insert(Pizza.TABLE, Pizza.NAME, values);
+        //Här är nått fel, får fel ID på pizzan
+
+        Log.i("pizzaID", pizzaID+"");
+        // create p_i relations where p_id = pizza id for each ingredient
+        String[] ingredIDs = pizza.ingredIDs.split(",");
+        for (String s : ingredIDs){
+            String query = "INSERT INTO p_i (p_id, i_id) VALUES (?,?)";
+            String[] args = {pizzaID+"", s};
+            myDataBase.rawQuery(query, args);
+            Log.i("pizzaID", pizzaID+"|"+s);
+        }
     }
 }
