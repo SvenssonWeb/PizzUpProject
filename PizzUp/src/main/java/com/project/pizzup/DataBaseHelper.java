@@ -198,6 +198,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
         if (pizzaId == -1) {
             query = "SELECT * FROM ingredient";
         } else {
+            // kolla om datan skrevs in i db, och om den här query är korrekt p_id = ?
             query = "SELECT * FROM ingredient AS i LEFT JOIN p_i ON p_i.i_id = i._id WHERE p_id = ?";
             args = new String[]{"" + pizzaId};
         }
