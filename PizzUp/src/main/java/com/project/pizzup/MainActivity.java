@@ -48,10 +48,10 @@ public class MainActivity extends Activity {
 		// Third parameter - ID of the TextView to which the data is written
 		// Forth - the Array of data
 
-//		ArrayAdapter<Pizzeria> adapter = new ArrayAdapter<Pizzeria>(this,
+//		ArrayAdapter<Pizzeria> pizzaArrayAdapter = new ArrayAdapter<Pizzeria>(this,
 //			android.R.layout.simple_list_item_1, android.R.id.text1, pizzerias);
 
-		// Assign adapter to ListView
+		// Assign pizzaArrayAdapter to ListView
 		listView.setAdapter(resAdapter);
 
 		// ListView Item Click Listener

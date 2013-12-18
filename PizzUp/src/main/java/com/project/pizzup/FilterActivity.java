@@ -21,41 +21,27 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
 
     Pizza pizza = new Pizza();
     DataBaseHelper myDbHelper;
+	ListView pizzaWithIngredients;
+	ArrayAdapter<Pizza> pizzaWithIngredientsAdapter;
+	Spinner spinner;
 
-    @Override
+	@Override
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
-        ListView pizzaWithIngredients = (ListView) findViewById(R.id.pizzaIngretient);
-
         // Ingredient selectedIngredient = pizza.ingredients.get(pos);
-        List<Pizza> pizzas = myDbHelper.getAllPizzasWithIngredient(pos);
+	    Ingredient i = (Ingredient) spinner.getItemAtPosition(pos);
+		if (i != null) {
+	        List<Pizza> pizzas = myDbHelper.getAllPizzasWithIngredient(i.id);
 
-        ArrayAdapter<Pizza> adapter = (ArrayAdapter<Pizza>)pizzaWithIngredients.getAdapter();
+			pizzaWithIngredientsAdapter.clear();
 
-        adapter.clear();
-
-        adapter.addAll(pizzas);
-
+			pizzaWithIngredientsAdapter.addAll(pizzas);
+		}
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
-    }
-
-    public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
-
-        public void onItemSelected(AdapterView<?> parent, View view,
-                                   int pos, long id) {
-            // An item was selected. You can retrieve the selected item using
-            // parent.getItemAtPosition(pos)
-
-
-        }
-
-        public void onNothingSelected(AdapterView<?> parent) {
-            // Another interface callback
-        }
     }
 
     @Override
@@ -68,21 +54,21 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
 
         pizza.ingredients = myDbHelper.getPizzaIngredients(-1);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
 
-        ArrayAdapter<Ingredient> adapter = new ArrayAdapter<Ingredient>(this,
+        ArrayAdapter<Ingredient> ingredientArrayAdapter = new ArrayAdapter<Ingredient>(this,
                  android.R.layout.simple_spinner_item, pizza.ingredients);
 
 
 // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        ingredientArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the pizzaArrayAdapter to the spinner
+        spinner.setAdapter(ingredientArrayAdapter);
 
-        ListView pizzaWithIngredients = (ListView) findViewById(R.id.pizzaIngretient);
+        pizzaWithIngredients = (ListView) findViewById(R.id.pizzaIngretient);
 
-        ArrayAdapter<Pizza> pizzaWithIngredientsAdapter = new ArrayAdapter<Pizza>(this, android.R.layout.simple_spinner_item, allPizzas);
+        pizzaWithIngredientsAdapter = new ArrayAdapter<Pizza>(this, android.R.layout.simple_spinner_item, allPizzas);
 
         pizzaWithIngredientsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pizzaWithIngredients.setAdapter(pizzaWithIngredientsAdapter);
